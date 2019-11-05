@@ -1,0 +1,69 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Fri Nov 10 07:02:08 2017
+[*]
+[dumpfile] "/home/master/fpga/k32/rtl/ghdl/tb_k32.ghw"
+[dumpfile_mtime] "Fri Nov 10 07:01:26 2017"
+[dumpfile_size] 2172364
+[savefile] "/home/master/fpga/k32/rtl/ghdl/tb_k32_multy.gtkw"
+[timestart] 67500000
+[size] 1920 1025
+[pos] -1 -1
+*-24.761658 170000000 100000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.tb_k32.
+[treeopen] top.tb_k32.node_0.
+[treeopen] top.tb_k32.node_0.cpu.fetch_i.
+[treeopen] top.tb_k32.node_0.east_i.
+[treeopen] top.tb_k32.node_0.east_i.bus_in.
+[treeopen] top.tb_k32.node_0.east_i.bus_out.
+[treeopen] top.tb_k32.node_1.
+[treeopen] top.tb_k32.node_1.cpu.io_in.
+[treeopen] top.tb_k32.node_1.cpu.io_out.
+[treeopen] top.tb_k32.node_1.west_i.bus_in.
+[sst_width] 215
+[signals_width] 217
+[sst_expanded] 1
+[sst_vpaned_height] 543
+@28
+top.tb_k32.clk
+@200
+-
+-TX BUS
+@28
+top.tb_k32.node_0.east_i.bus_ce
+@22
+#{top.tb_k32.node_0.io_out.we[3:0]} top.tb_k32.node_0.io_out.we[3] top.tb_k32.node_0.io_out.we[2] top.tb_k32.node_0.io_out.we[1] top.tb_k32.node_0.io_out.we[0]
+@28
+top.tb_k32.node_0.io_out.re
+@22
+#{top.tb_k32.node_0.east_i.bus_in.addr[31:0]} top.tb_k32.node_0.east_i.bus_in.addr[31] top.tb_k32.node_0.east_i.bus_in.addr[30] top.tb_k32.node_0.east_i.bus_in.addr[29] top.tb_k32.node_0.east_i.bus_in.addr[28] top.tb_k32.node_0.east_i.bus_in.addr[27] top.tb_k32.node_0.east_i.bus_in.addr[26] top.tb_k32.node_0.east_i.bus_in.addr[25] top.tb_k32.node_0.east_i.bus_in.addr[24] top.tb_k32.node_0.east_i.bus_in.addr[23] top.tb_k32.node_0.east_i.bus_in.addr[22] top.tb_k32.node_0.east_i.bus_in.addr[21] top.tb_k32.node_0.east_i.bus_in.addr[20] top.tb_k32.node_0.east_i.bus_in.addr[19] top.tb_k32.node_0.east_i.bus_in.addr[18] top.tb_k32.node_0.east_i.bus_in.addr[17] top.tb_k32.node_0.east_i.bus_in.addr[16] top.tb_k32.node_0.east_i.bus_in.addr[15] top.tb_k32.node_0.east_i.bus_in.addr[14] top.tb_k32.node_0.east_i.bus_in.addr[13] top.tb_k32.node_0.east_i.bus_in.addr[12] top.tb_k32.node_0.east_i.bus_in.addr[11] top.tb_k32.node_0.east_i.bus_in.addr[10] top.tb_k32.node_0.east_i.bus_in.addr[9] top.tb_k32.node_0.east_i.bus_in.addr[8] top.tb_k32.node_0.east_i.bus_in.addr[7] top.tb_k32.node_0.east_i.bus_in.addr[6] top.tb_k32.node_0.east_i.bus_in.addr[5] top.tb_k32.node_0.east_i.bus_in.addr[4] top.tb_k32.node_0.east_i.bus_in.addr[3] top.tb_k32.node_0.east_i.bus_in.addr[2] top.tb_k32.node_0.east_i.bus_in.addr[1] top.tb_k32.node_0.east_i.bus_in.addr[0]
+#{top.tb_k32.node_0.east_i.bus_out.dat[31:0]} top.tb_k32.node_0.east_i.bus_out.dat[31] top.tb_k32.node_0.east_i.bus_out.dat[30] top.tb_k32.node_0.east_i.bus_out.dat[29] top.tb_k32.node_0.east_i.bus_out.dat[28] top.tb_k32.node_0.east_i.bus_out.dat[27] top.tb_k32.node_0.east_i.bus_out.dat[26] top.tb_k32.node_0.east_i.bus_out.dat[25] top.tb_k32.node_0.east_i.bus_out.dat[24] top.tb_k32.node_0.east_i.bus_out.dat[23] top.tb_k32.node_0.east_i.bus_out.dat[22] top.tb_k32.node_0.east_i.bus_out.dat[21] top.tb_k32.node_0.east_i.bus_out.dat[20] top.tb_k32.node_0.east_i.bus_out.dat[19] top.tb_k32.node_0.east_i.bus_out.dat[18] top.tb_k32.node_0.east_i.bus_out.dat[17] top.tb_k32.node_0.east_i.bus_out.dat[16] top.tb_k32.node_0.east_i.bus_out.dat[15] top.tb_k32.node_0.east_i.bus_out.dat[14] top.tb_k32.node_0.east_i.bus_out.dat[13] top.tb_k32.node_0.east_i.bus_out.dat[12] top.tb_k32.node_0.east_i.bus_out.dat[11] top.tb_k32.node_0.east_i.bus_out.dat[10] top.tb_k32.node_0.east_i.bus_out.dat[9] top.tb_k32.node_0.east_i.bus_out.dat[8] top.tb_k32.node_0.east_i.bus_out.dat[7] top.tb_k32.node_0.east_i.bus_out.dat[6] top.tb_k32.node_0.east_i.bus_out.dat[5] top.tb_k32.node_0.east_i.bus_out.dat[4] top.tb_k32.node_0.east_i.bus_out.dat[3] top.tb_k32.node_0.east_i.bus_out.dat[2] top.tb_k32.node_0.east_i.bus_out.dat[1] top.tb_k32.node_0.east_i.bus_out.dat[0]
+@29
+top.tb_k32.node_0.east_i.bus_out.free
+@200
+-
+-TX PORT
+@28
+top.tb_k32.node_0.east_i.tx_req
+top.tb_k32.node_0.east_i.port_tx_ack
+top.tb_k32.node_0.east_i.tx_free
+@200
+-
+-RX BUS
+@28
+top.tb_k32.node_1.west_i.bus_ce
+top.tb_k32.node_1.cpu.io_out.re
+@22
+#{top.tb_k32.node_1.west_i.bus_in.addr[31:0]} top.tb_k32.node_1.west_i.bus_in.addr[31] top.tb_k32.node_1.west_i.bus_in.addr[30] top.tb_k32.node_1.west_i.bus_in.addr[29] top.tb_k32.node_1.west_i.bus_in.addr[28] top.tb_k32.node_1.west_i.bus_in.addr[27] top.tb_k32.node_1.west_i.bus_in.addr[26] top.tb_k32.node_1.west_i.bus_in.addr[25] top.tb_k32.node_1.west_i.bus_in.addr[24] top.tb_k32.node_1.west_i.bus_in.addr[23] top.tb_k32.node_1.west_i.bus_in.addr[22] top.tb_k32.node_1.west_i.bus_in.addr[21] top.tb_k32.node_1.west_i.bus_in.addr[20] top.tb_k32.node_1.west_i.bus_in.addr[19] top.tb_k32.node_1.west_i.bus_in.addr[18] top.tb_k32.node_1.west_i.bus_in.addr[17] top.tb_k32.node_1.west_i.bus_in.addr[16] top.tb_k32.node_1.west_i.bus_in.addr[15] top.tb_k32.node_1.west_i.bus_in.addr[14] top.tb_k32.node_1.west_i.bus_in.addr[13] top.tb_k32.node_1.west_i.bus_in.addr[12] top.tb_k32.node_1.west_i.bus_in.addr[11] top.tb_k32.node_1.west_i.bus_in.addr[10] top.tb_k32.node_1.west_i.bus_in.addr[9] top.tb_k32.node_1.west_i.bus_in.addr[8] top.tb_k32.node_1.west_i.bus_in.addr[7] top.tb_k32.node_1.west_i.bus_in.addr[6] top.tb_k32.node_1.west_i.bus_in.addr[5] top.tb_k32.node_1.west_i.bus_in.addr[4] top.tb_k32.node_1.west_i.bus_in.addr[3] top.tb_k32.node_1.west_i.bus_in.addr[2] top.tb_k32.node_1.west_i.bus_in.addr[1] top.tb_k32.node_1.west_i.bus_in.addr[0]
+@28
+top.tb_k32.node_1.west_i.rx_state
+top.tb_k32.node_1.west_i.bus_out.free
+@200
+-
+-RX PORT
+@28
+top.tb_k32.node_1.west_i.rx_ack
+top.tb_k32.node_1.west_i.rx_ready
+[pattern_trace] 1
+[pattern_trace] 0

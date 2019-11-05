@@ -1,0 +1,192 @@
+[*]
+[*] GTKWave Analyzer v3.3.67 (w)1999-2015 BSI
+[*] Wed Nov  8 19:49:25 2017
+[*]
+[dumpfile] "/home/master/fpga/k32/rtl/ghdl/tb_k32.ghw"
+[dumpfile_mtime] "Wed Nov  8 19:46:13 2017"
+[dumpfile_size] 1152519
+[savefile] "/home/master/fpga/k32/rtl/ghdl/tb_k32.gtkw"
+[timestart] 437500000
+[size] 1920 1020
+[pos] -1 -1
+*-27.203682 300000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.tb_k32.
+[treeopen] top.tb_k32.B1.
+[treeopen] top.tb_k32.B1.uart_i.
+[treeopen] top.tb_k32.cpu.ex_i.ds_in.
+[treeopen] top.tb_k32.cpu.ex_i.ds_out.
+[treeopen] top.tb_k32.cpu.ex_i.rs_in.
+[treeopen] top.tb_k32.data_in.
+[treeopen] top.tb_k32.data_out.
+[treeopen] top.tb_k32.io_in.
+[treeopen] top.tb_k32.io_out.
+[sst_width] 215
+[signals_width] 254
+[sst_expanded] 1
+[sst_vpaned_height] 669
+@28
+top.tb_k32.en
+top.tb_k32.reset
+top.tb_k32.clk
+@200
+-
+@22
+#{top.tb_k32.cpu.ibus_out.addr[31:0]} top.tb_k32.cpu.ibus_out.addr[31] top.tb_k32.cpu.ibus_out.addr[30] top.tb_k32.cpu.ibus_out.addr[29] top.tb_k32.cpu.ibus_out.addr[28] top.tb_k32.cpu.ibus_out.addr[27] top.tb_k32.cpu.ibus_out.addr[26] top.tb_k32.cpu.ibus_out.addr[25] top.tb_k32.cpu.ibus_out.addr[24] top.tb_k32.cpu.ibus_out.addr[23] top.tb_k32.cpu.ibus_out.addr[22] top.tb_k32.cpu.ibus_out.addr[21] top.tb_k32.cpu.ibus_out.addr[20] top.tb_k32.cpu.ibus_out.addr[19] top.tb_k32.cpu.ibus_out.addr[18] top.tb_k32.cpu.ibus_out.addr[17] top.tb_k32.cpu.ibus_out.addr[16] top.tb_k32.cpu.ibus_out.addr[15] top.tb_k32.cpu.ibus_out.addr[14] top.tb_k32.cpu.ibus_out.addr[13] top.tb_k32.cpu.ibus_out.addr[12] top.tb_k32.cpu.ibus_out.addr[11] top.tb_k32.cpu.ibus_out.addr[10] top.tb_k32.cpu.ibus_out.addr[9] top.tb_k32.cpu.ibus_out.addr[8] top.tb_k32.cpu.ibus_out.addr[7] top.tb_k32.cpu.ibus_out.addr[6] top.tb_k32.cpu.ibus_out.addr[5] top.tb_k32.cpu.ibus_out.addr[4] top.tb_k32.cpu.ibus_out.addr[3] top.tb_k32.cpu.ibus_out.addr[2] top.tb_k32.cpu.ibus_out.addr[1] top.tb_k32.cpu.ibus_out.addr[0]
+#{top.tb_k32.cpu.ibus_in.dat[31:0]} top.tb_k32.cpu.ibus_in.dat[31] top.tb_k32.cpu.ibus_in.dat[30] top.tb_k32.cpu.ibus_in.dat[29] top.tb_k32.cpu.ibus_in.dat[28] top.tb_k32.cpu.ibus_in.dat[27] top.tb_k32.cpu.ibus_in.dat[26] top.tb_k32.cpu.ibus_in.dat[25] top.tb_k32.cpu.ibus_in.dat[24] top.tb_k32.cpu.ibus_in.dat[23] top.tb_k32.cpu.ibus_in.dat[22] top.tb_k32.cpu.ibus_in.dat[21] top.tb_k32.cpu.ibus_in.dat[20] top.tb_k32.cpu.ibus_in.dat[19] top.tb_k32.cpu.ibus_in.dat[18] top.tb_k32.cpu.ibus_in.dat[17] top.tb_k32.cpu.ibus_in.dat[16] top.tb_k32.cpu.ibus_in.dat[15] top.tb_k32.cpu.ibus_in.dat[14] top.tb_k32.cpu.ibus_in.dat[13] top.tb_k32.cpu.ibus_in.dat[12] top.tb_k32.cpu.ibus_in.dat[11] top.tb_k32.cpu.ibus_in.dat[10] top.tb_k32.cpu.ibus_in.dat[9] top.tb_k32.cpu.ibus_in.dat[8] top.tb_k32.cpu.ibus_in.dat[7] top.tb_k32.cpu.ibus_in.dat[6] top.tb_k32.cpu.ibus_in.dat[5] top.tb_k32.cpu.ibus_in.dat[4] top.tb_k32.cpu.ibus_in.dat[3] top.tb_k32.cpu.ibus_in.dat[2] top.tb_k32.cpu.ibus_in.dat[1] top.tb_k32.cpu.ibus_in.dat[0]
+@200
+-
+@28
+top.tb_k32.cpu.ex_i.decode.call
+top.tb_k32.cpu.ex_i.decode.cond_jump
+top.tb_k32.cpu.ex_i.decode.jump
+top.tb_k32.cpu.ex_i.decode.alu_store
+top.tb_k32.cpu.ex_i.decode.alu_t_r
+top.tb_k32.cpu.ex_i.decode.alu_r_pc
+top.tb_k32.cpu.ex_i.decode.alu_t_n
+top.tb_k32.cpu.ex_i.decode.alu
+top.tb_k32.cpu.ex_i.decode.lit
+@200
+-
+@22
+#{top.tb_k32.cpu.ex_i.alu_a[31:0]} top.tb_k32.cpu.ex_i.alu_a[31] top.tb_k32.cpu.ex_i.alu_a[30] top.tb_k32.cpu.ex_i.alu_a[29] top.tb_k32.cpu.ex_i.alu_a[28] top.tb_k32.cpu.ex_i.alu_a[27] top.tb_k32.cpu.ex_i.alu_a[26] top.tb_k32.cpu.ex_i.alu_a[25] top.tb_k32.cpu.ex_i.alu_a[24] top.tb_k32.cpu.ex_i.alu_a[23] top.tb_k32.cpu.ex_i.alu_a[22] top.tb_k32.cpu.ex_i.alu_a[21] top.tb_k32.cpu.ex_i.alu_a[20] top.tb_k32.cpu.ex_i.alu_a[19] top.tb_k32.cpu.ex_i.alu_a[18] top.tb_k32.cpu.ex_i.alu_a[17] top.tb_k32.cpu.ex_i.alu_a[16] top.tb_k32.cpu.ex_i.alu_a[15] top.tb_k32.cpu.ex_i.alu_a[14] top.tb_k32.cpu.ex_i.alu_a[13] top.tb_k32.cpu.ex_i.alu_a[12] top.tb_k32.cpu.ex_i.alu_a[11] top.tb_k32.cpu.ex_i.alu_a[10] top.tb_k32.cpu.ex_i.alu_a[9] top.tb_k32.cpu.ex_i.alu_a[8] top.tb_k32.cpu.ex_i.alu_a[7] top.tb_k32.cpu.ex_i.alu_a[6] top.tb_k32.cpu.ex_i.alu_a[5] top.tb_k32.cpu.ex_i.alu_a[4] top.tb_k32.cpu.ex_i.alu_a[3] top.tb_k32.cpu.ex_i.alu_a[2] top.tb_k32.cpu.ex_i.alu_a[1] top.tb_k32.cpu.ex_i.alu_a[0]
+#{top.tb_k32.cpu.ex_i.alu_b[31:0]} top.tb_k32.cpu.ex_i.alu_b[31] top.tb_k32.cpu.ex_i.alu_b[30] top.tb_k32.cpu.ex_i.alu_b[29] top.tb_k32.cpu.ex_i.alu_b[28] top.tb_k32.cpu.ex_i.alu_b[27] top.tb_k32.cpu.ex_i.alu_b[26] top.tb_k32.cpu.ex_i.alu_b[25] top.tb_k32.cpu.ex_i.alu_b[24] top.tb_k32.cpu.ex_i.alu_b[23] top.tb_k32.cpu.ex_i.alu_b[22] top.tb_k32.cpu.ex_i.alu_b[21] top.tb_k32.cpu.ex_i.alu_b[20] top.tb_k32.cpu.ex_i.alu_b[19] top.tb_k32.cpu.ex_i.alu_b[18] top.tb_k32.cpu.ex_i.alu_b[17] top.tb_k32.cpu.ex_i.alu_b[16] top.tb_k32.cpu.ex_i.alu_b[15] top.tb_k32.cpu.ex_i.alu_b[14] top.tb_k32.cpu.ex_i.alu_b[13] top.tb_k32.cpu.ex_i.alu_b[12] top.tb_k32.cpu.ex_i.alu_b[11] top.tb_k32.cpu.ex_i.alu_b[10] top.tb_k32.cpu.ex_i.alu_b[9] top.tb_k32.cpu.ex_i.alu_b[8] top.tb_k32.cpu.ex_i.alu_b[7] top.tb_k32.cpu.ex_i.alu_b[6] top.tb_k32.cpu.ex_i.alu_b[5] top.tb_k32.cpu.ex_i.alu_b[4] top.tb_k32.cpu.ex_i.alu_b[3] top.tb_k32.cpu.ex_i.alu_b[2] top.tb_k32.cpu.ex_i.alu_b[1] top.tb_k32.cpu.ex_i.alu_b[0]
+#{top.tb_k32.cpu.decode.alu_op[3:0]} top.tb_k32.cpu.decode.alu_op[3] top.tb_k32.cpu.decode.alu_op[2] top.tb_k32.cpu.decode.alu_op[1] top.tb_k32.cpu.decode.alu_op[0]
+@200
+-
+-
+-DS->EX
+@22
+#{top.tb_k32.cpu.ds_ex.t[31:0]} top.tb_k32.cpu.ds_ex.t[31] top.tb_k32.cpu.ds_ex.t[30] top.tb_k32.cpu.ds_ex.t[29] top.tb_k32.cpu.ds_ex.t[28] top.tb_k32.cpu.ds_ex.t[27] top.tb_k32.cpu.ds_ex.t[26] top.tb_k32.cpu.ds_ex.t[25] top.tb_k32.cpu.ds_ex.t[24] top.tb_k32.cpu.ds_ex.t[23] top.tb_k32.cpu.ds_ex.t[22] top.tb_k32.cpu.ds_ex.t[21] top.tb_k32.cpu.ds_ex.t[20] top.tb_k32.cpu.ds_ex.t[19] top.tb_k32.cpu.ds_ex.t[18] top.tb_k32.cpu.ds_ex.t[17] top.tb_k32.cpu.ds_ex.t[16] top.tb_k32.cpu.ds_ex.t[15] top.tb_k32.cpu.ds_ex.t[14] top.tb_k32.cpu.ds_ex.t[13] top.tb_k32.cpu.ds_ex.t[12] top.tb_k32.cpu.ds_ex.t[11] top.tb_k32.cpu.ds_ex.t[10] top.tb_k32.cpu.ds_ex.t[9] top.tb_k32.cpu.ds_ex.t[8] top.tb_k32.cpu.ds_ex.t[7] top.tb_k32.cpu.ds_ex.t[6] top.tb_k32.cpu.ds_ex.t[5] top.tb_k32.cpu.ds_ex.t[4] top.tb_k32.cpu.ds_ex.t[3] top.tb_k32.cpu.ds_ex.t[2] top.tb_k32.cpu.ds_ex.t[1] top.tb_k32.cpu.ds_ex.t[0]
+@c00022
+#{top.tb_k32.cpu.ds_ex.n[31:0]} top.tb_k32.cpu.ds_ex.n[31] top.tb_k32.cpu.ds_ex.n[30] top.tb_k32.cpu.ds_ex.n[29] top.tb_k32.cpu.ds_ex.n[28] top.tb_k32.cpu.ds_ex.n[27] top.tb_k32.cpu.ds_ex.n[26] top.tb_k32.cpu.ds_ex.n[25] top.tb_k32.cpu.ds_ex.n[24] top.tb_k32.cpu.ds_ex.n[23] top.tb_k32.cpu.ds_ex.n[22] top.tb_k32.cpu.ds_ex.n[21] top.tb_k32.cpu.ds_ex.n[20] top.tb_k32.cpu.ds_ex.n[19] top.tb_k32.cpu.ds_ex.n[18] top.tb_k32.cpu.ds_ex.n[17] top.tb_k32.cpu.ds_ex.n[16] top.tb_k32.cpu.ds_ex.n[15] top.tb_k32.cpu.ds_ex.n[14] top.tb_k32.cpu.ds_ex.n[13] top.tb_k32.cpu.ds_ex.n[12] top.tb_k32.cpu.ds_ex.n[11] top.tb_k32.cpu.ds_ex.n[10] top.tb_k32.cpu.ds_ex.n[9] top.tb_k32.cpu.ds_ex.n[8] top.tb_k32.cpu.ds_ex.n[7] top.tb_k32.cpu.ds_ex.n[6] top.tb_k32.cpu.ds_ex.n[5] top.tb_k32.cpu.ds_ex.n[4] top.tb_k32.cpu.ds_ex.n[3] top.tb_k32.cpu.ds_ex.n[2] top.tb_k32.cpu.ds_ex.n[1] top.tb_k32.cpu.ds_ex.n[0]
+@28
+top.tb_k32.cpu.ds_ex.n[31]
+top.tb_k32.cpu.ds_ex.n[30]
+top.tb_k32.cpu.ds_ex.n[29]
+top.tb_k32.cpu.ds_ex.n[28]
+top.tb_k32.cpu.ds_ex.n[27]
+top.tb_k32.cpu.ds_ex.n[26]
+top.tb_k32.cpu.ds_ex.n[25]
+top.tb_k32.cpu.ds_ex.n[24]
+top.tb_k32.cpu.ds_ex.n[23]
+top.tb_k32.cpu.ds_ex.n[22]
+top.tb_k32.cpu.ds_ex.n[21]
+top.tb_k32.cpu.ds_ex.n[20]
+top.tb_k32.cpu.ds_ex.n[19]
+top.tb_k32.cpu.ds_ex.n[18]
+top.tb_k32.cpu.ds_ex.n[17]
+top.tb_k32.cpu.ds_ex.n[16]
+top.tb_k32.cpu.ds_ex.n[15]
+top.tb_k32.cpu.ds_ex.n[14]
+top.tb_k32.cpu.ds_ex.n[13]
+top.tb_k32.cpu.ds_ex.n[12]
+top.tb_k32.cpu.ds_ex.n[11]
+top.tb_k32.cpu.ds_ex.n[10]
+top.tb_k32.cpu.ds_ex.n[9]
+top.tb_k32.cpu.ds_ex.n[8]
+top.tb_k32.cpu.ds_ex.n[7]
+top.tb_k32.cpu.ds_ex.n[6]
+top.tb_k32.cpu.ds_ex.n[5]
+top.tb_k32.cpu.ds_ex.n[4]
+top.tb_k32.cpu.ds_ex.n[3]
+top.tb_k32.cpu.ds_ex.n[2]
+top.tb_k32.cpu.ds_ex.n[1]
+top.tb_k32.cpu.ds_ex.n[0]
+@1401200
+-group_end
+@22
+#{top.tb_k32.cpu.ds_ex.sp[4:0]} top.tb_k32.cpu.ds_ex.sp[4] top.tb_k32.cpu.ds_ex.sp[3] top.tb_k32.cpu.ds_ex.sp[2] top.tb_k32.cpu.ds_ex.sp[1] top.tb_k32.cpu.ds_ex.sp[0]
+@200
+-
+-EX->DS
+@28
+top.tb_k32.cpu.ex_ds.we
+@c00022
+#{top.tb_k32.cpu.ex_ds.t[31:0]} top.tb_k32.cpu.ex_ds.t[31] top.tb_k32.cpu.ex_ds.t[30] top.tb_k32.cpu.ex_ds.t[29] top.tb_k32.cpu.ex_ds.t[28] top.tb_k32.cpu.ex_ds.t[27] top.tb_k32.cpu.ex_ds.t[26] top.tb_k32.cpu.ex_ds.t[25] top.tb_k32.cpu.ex_ds.t[24] top.tb_k32.cpu.ex_ds.t[23] top.tb_k32.cpu.ex_ds.t[22] top.tb_k32.cpu.ex_ds.t[21] top.tb_k32.cpu.ex_ds.t[20] top.tb_k32.cpu.ex_ds.t[19] top.tb_k32.cpu.ex_ds.t[18] top.tb_k32.cpu.ex_ds.t[17] top.tb_k32.cpu.ex_ds.t[16] top.tb_k32.cpu.ex_ds.t[15] top.tb_k32.cpu.ex_ds.t[14] top.tb_k32.cpu.ex_ds.t[13] top.tb_k32.cpu.ex_ds.t[12] top.tb_k32.cpu.ex_ds.t[11] top.tb_k32.cpu.ex_ds.t[10] top.tb_k32.cpu.ex_ds.t[9] top.tb_k32.cpu.ex_ds.t[8] top.tb_k32.cpu.ex_ds.t[7] top.tb_k32.cpu.ex_ds.t[6] top.tb_k32.cpu.ex_ds.t[5] top.tb_k32.cpu.ex_ds.t[4] top.tb_k32.cpu.ex_ds.t[3] top.tb_k32.cpu.ex_ds.t[2] top.tb_k32.cpu.ex_ds.t[1] top.tb_k32.cpu.ex_ds.t[0]
+@28
+top.tb_k32.cpu.ex_ds.t[31]
+top.tb_k32.cpu.ex_ds.t[30]
+top.tb_k32.cpu.ex_ds.t[29]
+top.tb_k32.cpu.ex_ds.t[28]
+top.tb_k32.cpu.ex_ds.t[27]
+top.tb_k32.cpu.ex_ds.t[26]
+top.tb_k32.cpu.ex_ds.t[25]
+top.tb_k32.cpu.ex_ds.t[24]
+top.tb_k32.cpu.ex_ds.t[23]
+top.tb_k32.cpu.ex_ds.t[22]
+top.tb_k32.cpu.ex_ds.t[21]
+top.tb_k32.cpu.ex_ds.t[20]
+top.tb_k32.cpu.ex_ds.t[19]
+top.tb_k32.cpu.ex_ds.t[18]
+top.tb_k32.cpu.ex_ds.t[17]
+top.tb_k32.cpu.ex_ds.t[16]
+top.tb_k32.cpu.ex_ds.t[15]
+top.tb_k32.cpu.ex_ds.t[14]
+top.tb_k32.cpu.ex_ds.t[13]
+top.tb_k32.cpu.ex_ds.t[12]
+top.tb_k32.cpu.ex_ds.t[11]
+top.tb_k32.cpu.ex_ds.t[10]
+top.tb_k32.cpu.ex_ds.t[9]
+top.tb_k32.cpu.ex_ds.t[8]
+top.tb_k32.cpu.ex_ds.t[7]
+top.tb_k32.cpu.ex_ds.t[6]
+top.tb_k32.cpu.ex_ds.t[5]
+top.tb_k32.cpu.ex_ds.t[4]
+top.tb_k32.cpu.ex_ds.t[3]
+top.tb_k32.cpu.ex_ds.t[2]
+top.tb_k32.cpu.ex_ds.t[1]
+top.tb_k32.cpu.ex_ds.t[0]
+@1401200
+-group_end
+@200
+-
+-RS->EX
+@22
+#{top.tb_k32.cpu.ex_i.rs_out.t[31:0]} top.tb_k32.cpu.ex_i.rs_out.t[31] top.tb_k32.cpu.ex_i.rs_out.t[30] top.tb_k32.cpu.ex_i.rs_out.t[29] top.tb_k32.cpu.ex_i.rs_out.t[28] top.tb_k32.cpu.ex_i.rs_out.t[27] top.tb_k32.cpu.ex_i.rs_out.t[26] top.tb_k32.cpu.ex_i.rs_out.t[25] top.tb_k32.cpu.ex_i.rs_out.t[24] top.tb_k32.cpu.ex_i.rs_out.t[23] top.tb_k32.cpu.ex_i.rs_out.t[22] top.tb_k32.cpu.ex_i.rs_out.t[21] top.tb_k32.cpu.ex_i.rs_out.t[20] top.tb_k32.cpu.ex_i.rs_out.t[19] top.tb_k32.cpu.ex_i.rs_out.t[18] top.tb_k32.cpu.ex_i.rs_out.t[17] top.tb_k32.cpu.ex_i.rs_out.t[16] top.tb_k32.cpu.ex_i.rs_out.t[15] top.tb_k32.cpu.ex_i.rs_out.t[14] top.tb_k32.cpu.ex_i.rs_out.t[13] top.tb_k32.cpu.ex_i.rs_out.t[12] top.tb_k32.cpu.ex_i.rs_out.t[11] top.tb_k32.cpu.ex_i.rs_out.t[10] top.tb_k32.cpu.ex_i.rs_out.t[9] top.tb_k32.cpu.ex_i.rs_out.t[8] top.tb_k32.cpu.ex_i.rs_out.t[7] top.tb_k32.cpu.ex_i.rs_out.t[6] top.tb_k32.cpu.ex_i.rs_out.t[5] top.tb_k32.cpu.ex_i.rs_out.t[4] top.tb_k32.cpu.ex_i.rs_out.t[3] top.tb_k32.cpu.ex_i.rs_out.t[2] top.tb_k32.cpu.ex_i.rs_out.t[1] top.tb_k32.cpu.ex_i.rs_out.t[0]
+@200
+-
+-EX->RS
+@22
+#{top.tb_k32.cpu.ex_i.rs_in.t[31:0]} top.tb_k32.cpu.ex_i.rs_in.t[31] top.tb_k32.cpu.ex_i.rs_in.t[30] top.tb_k32.cpu.ex_i.rs_in.t[29] top.tb_k32.cpu.ex_i.rs_in.t[28] top.tb_k32.cpu.ex_i.rs_in.t[27] top.tb_k32.cpu.ex_i.rs_in.t[26] top.tb_k32.cpu.ex_i.rs_in.t[25] top.tb_k32.cpu.ex_i.rs_in.t[24] top.tb_k32.cpu.ex_i.rs_in.t[23] top.tb_k32.cpu.ex_i.rs_in.t[22] top.tb_k32.cpu.ex_i.rs_in.t[21] top.tb_k32.cpu.ex_i.rs_in.t[20] top.tb_k32.cpu.ex_i.rs_in.t[19] top.tb_k32.cpu.ex_i.rs_in.t[18] top.tb_k32.cpu.ex_i.rs_in.t[17] top.tb_k32.cpu.ex_i.rs_in.t[16] top.tb_k32.cpu.ex_i.rs_in.t[15] top.tb_k32.cpu.ex_i.rs_in.t[14] top.tb_k32.cpu.ex_i.rs_in.t[13] top.tb_k32.cpu.ex_i.rs_in.t[12] top.tb_k32.cpu.ex_i.rs_in.t[11] top.tb_k32.cpu.ex_i.rs_in.t[10] top.tb_k32.cpu.ex_i.rs_in.t[9] top.tb_k32.cpu.ex_i.rs_in.t[8] top.tb_k32.cpu.ex_i.rs_in.t[7] top.tb_k32.cpu.ex_i.rs_in.t[6] top.tb_k32.cpu.ex_i.rs_in.t[5] top.tb_k32.cpu.ex_i.rs_in.t[4] top.tb_k32.cpu.ex_i.rs_in.t[3] top.tb_k32.cpu.ex_i.rs_in.t[2] top.tb_k32.cpu.ex_i.rs_in.t[1] top.tb_k32.cpu.ex_i.rs_in.t[0]
+@200
+-
+-Data
+@22
+#{top.tb_k32.data_out.addr[31:0]} top.tb_k32.data_out.addr[31] top.tb_k32.data_out.addr[30] top.tb_k32.data_out.addr[29] top.tb_k32.data_out.addr[28] top.tb_k32.data_out.addr[27] top.tb_k32.data_out.addr[26] top.tb_k32.data_out.addr[25] top.tb_k32.data_out.addr[24] top.tb_k32.data_out.addr[23] top.tb_k32.data_out.addr[22] top.tb_k32.data_out.addr[21] top.tb_k32.data_out.addr[20] top.tb_k32.data_out.addr[19] top.tb_k32.data_out.addr[18] top.tb_k32.data_out.addr[17] top.tb_k32.data_out.addr[16] top.tb_k32.data_out.addr[15] top.tb_k32.data_out.addr[14] top.tb_k32.data_out.addr[13] top.tb_k32.data_out.addr[12] top.tb_k32.data_out.addr[11] top.tb_k32.data_out.addr[10] top.tb_k32.data_out.addr[9] top.tb_k32.data_out.addr[8] top.tb_k32.data_out.addr[7] top.tb_k32.data_out.addr[6] top.tb_k32.data_out.addr[5] top.tb_k32.data_out.addr[4] top.tb_k32.data_out.addr[3] top.tb_k32.data_out.addr[2] top.tb_k32.data_out.addr[1] top.tb_k32.data_out.addr[0]
+#{top.tb_k32.data_in.dat[31:0]} top.tb_k32.data_in.dat[31] top.tb_k32.data_in.dat[30] top.tb_k32.data_in.dat[29] top.tb_k32.data_in.dat[28] top.tb_k32.data_in.dat[27] top.tb_k32.data_in.dat[26] top.tb_k32.data_in.dat[25] top.tb_k32.data_in.dat[24] top.tb_k32.data_in.dat[23] top.tb_k32.data_in.dat[22] top.tb_k32.data_in.dat[21] top.tb_k32.data_in.dat[20] top.tb_k32.data_in.dat[19] top.tb_k32.data_in.dat[18] top.tb_k32.data_in.dat[17] top.tb_k32.data_in.dat[16] top.tb_k32.data_in.dat[15] top.tb_k32.data_in.dat[14] top.tb_k32.data_in.dat[13] top.tb_k32.data_in.dat[12] top.tb_k32.data_in.dat[11] top.tb_k32.data_in.dat[10] top.tb_k32.data_in.dat[9] top.tb_k32.data_in.dat[8] top.tb_k32.data_in.dat[7] top.tb_k32.data_in.dat[6] top.tb_k32.data_in.dat[5] top.tb_k32.data_in.dat[4] top.tb_k32.data_in.dat[3] top.tb_k32.data_in.dat[2] top.tb_k32.data_in.dat[1] top.tb_k32.data_in.dat[0]
+@28
+top.tb_k32.data_out.re
+@22
+#{top.tb_k32.data_out.we[3:0]} top.tb_k32.data_out.we[3] top.tb_k32.data_out.we[2] top.tb_k32.data_out.we[1] top.tb_k32.data_out.we[0]
+#{top.tb_k32.data_out.dat[31:0]} top.tb_k32.data_out.dat[31] top.tb_k32.data_out.dat[30] top.tb_k32.data_out.dat[29] top.tb_k32.data_out.dat[28] top.tb_k32.data_out.dat[27] top.tb_k32.data_out.dat[26] top.tb_k32.data_out.dat[25] top.tb_k32.data_out.dat[24] top.tb_k32.data_out.dat[23] top.tb_k32.data_out.dat[22] top.tb_k32.data_out.dat[21] top.tb_k32.data_out.dat[20] top.tb_k32.data_out.dat[19] top.tb_k32.data_out.dat[18] top.tb_k32.data_out.dat[17] top.tb_k32.data_out.dat[16] top.tb_k32.data_out.dat[15] top.tb_k32.data_out.dat[14] top.tb_k32.data_out.dat[13] top.tb_k32.data_out.dat[12] top.tb_k32.data_out.dat[11] top.tb_k32.data_out.dat[10] top.tb_k32.data_out.dat[9] top.tb_k32.data_out.dat[8] top.tb_k32.data_out.dat[7] top.tb_k32.data_out.dat[6] top.tb_k32.data_out.dat[5] top.tb_k32.data_out.dat[4] top.tb_k32.data_out.dat[3] top.tb_k32.data_out.dat[2] top.tb_k32.data_out.dat[1] top.tb_k32.data_out.dat[0]
+@200
+-
+-IO
+@22
+#{top.tb_k32.io_out.addr[31:0]} top.tb_k32.io_out.addr[31] top.tb_k32.io_out.addr[30] top.tb_k32.io_out.addr[29] top.tb_k32.io_out.addr[28] top.tb_k32.io_out.addr[27] top.tb_k32.io_out.addr[26] top.tb_k32.io_out.addr[25] top.tb_k32.io_out.addr[24] top.tb_k32.io_out.addr[23] top.tb_k32.io_out.addr[22] top.tb_k32.io_out.addr[21] top.tb_k32.io_out.addr[20] top.tb_k32.io_out.addr[19] top.tb_k32.io_out.addr[18] top.tb_k32.io_out.addr[17] top.tb_k32.io_out.addr[16] top.tb_k32.io_out.addr[15] top.tb_k32.io_out.addr[14] top.tb_k32.io_out.addr[13] top.tb_k32.io_out.addr[12] top.tb_k32.io_out.addr[11] top.tb_k32.io_out.addr[10] top.tb_k32.io_out.addr[9] top.tb_k32.io_out.addr[8] top.tb_k32.io_out.addr[7] top.tb_k32.io_out.addr[6] top.tb_k32.io_out.addr[5] top.tb_k32.io_out.addr[4] top.tb_k32.io_out.addr[3] top.tb_k32.io_out.addr[2] top.tb_k32.io_out.addr[1] top.tb_k32.io_out.addr[0]
+#{top.tb_k32.io_in.dat[31:0]} top.tb_k32.io_in.dat[31] top.tb_k32.io_in.dat[30] top.tb_k32.io_in.dat[29] top.tb_k32.io_in.dat[28] top.tb_k32.io_in.dat[27] top.tb_k32.io_in.dat[26] top.tb_k32.io_in.dat[25] top.tb_k32.io_in.dat[24] top.tb_k32.io_in.dat[23] top.tb_k32.io_in.dat[22] top.tb_k32.io_in.dat[21] top.tb_k32.io_in.dat[20] top.tb_k32.io_in.dat[19] top.tb_k32.io_in.dat[18] top.tb_k32.io_in.dat[17] top.tb_k32.io_in.dat[16] top.tb_k32.io_in.dat[15] top.tb_k32.io_in.dat[14] top.tb_k32.io_in.dat[13] top.tb_k32.io_in.dat[12] top.tb_k32.io_in.dat[11] top.tb_k32.io_in.dat[10] top.tb_k32.io_in.dat[9] top.tb_k32.io_in.dat[8] top.tb_k32.io_in.dat[7] top.tb_k32.io_in.dat[6] top.tb_k32.io_in.dat[5] top.tb_k32.io_in.dat[4] top.tb_k32.io_in.dat[3] top.tb_k32.io_in.dat[2] top.tb_k32.io_in.dat[1] top.tb_k32.io_in.dat[0]
+@28
+top.tb_k32.io_out.re
+@22
+#{top.tb_k32.io_out.dat[31:0]} top.tb_k32.io_out.dat[31] top.tb_k32.io_out.dat[30] top.tb_k32.io_out.dat[29] top.tb_k32.io_out.dat[28] top.tb_k32.io_out.dat[27] top.tb_k32.io_out.dat[26] top.tb_k32.io_out.dat[25] top.tb_k32.io_out.dat[24] top.tb_k32.io_out.dat[23] top.tb_k32.io_out.dat[22] top.tb_k32.io_out.dat[21] top.tb_k32.io_out.dat[20] top.tb_k32.io_out.dat[19] top.tb_k32.io_out.dat[18] top.tb_k32.io_out.dat[17] top.tb_k32.io_out.dat[16] top.tb_k32.io_out.dat[15] top.tb_k32.io_out.dat[14] top.tb_k32.io_out.dat[13] top.tb_k32.io_out.dat[12] top.tb_k32.io_out.dat[11] top.tb_k32.io_out.dat[10] top.tb_k32.io_out.dat[9] top.tb_k32.io_out.dat[8] top.tb_k32.io_out.dat[7] top.tb_k32.io_out.dat[6] top.tb_k32.io_out.dat[5] top.tb_k32.io_out.dat[4] top.tb_k32.io_out.dat[3] top.tb_k32.io_out.dat[2] top.tb_k32.io_out.dat[1] top.tb_k32.io_out.dat[0]
+#{top.tb_k32.io_out.we[3:0]} top.tb_k32.io_out.we[3] top.tb_k32.io_out.we[2] top.tb_k32.io_out.we[1] top.tb_k32.io_out.we[0]
+@200
+-UART
+@28
+top.tb_k32.uart_tx
+@200
+-
+@28
+top.tb_k32.B1.uart_i.tx_start
+top.tb_k32.B1.uart_i.tx_bits
+@22
+#{top.tb_k32.B1.uart_i.tx_data_reg[9:0]} top.tb_k32.B1.uart_i.tx_data_reg[7] top.tb_k32.B1.uart_i.tx_data_reg[6] top.tb_k32.B1.uart_i.tx_data_reg[5] top.tb_k32.B1.uart_i.tx_data_reg[4] top.tb_k32.B1.uart_i.tx_data_reg[3] top.tb_k32.B1.uart_i.tx_data_reg[2] top.tb_k32.B1.uart_i.tx_data_reg[1] top.tb_k32.B1.uart_i.tx_data_reg[0]
+@28
+top.tb_k32.B1.uart_i.rx_ready
+@29
+top.tb_k32.B1.uart_i.rx_ready_reg
+@22
+#{top.tb_k32.B1.uart_i.rx_data_reg[7:0]} top.tb_k32.B1.uart_i.rx_data_reg[7] top.tb_k32.B1.uart_i.rx_data_reg[6] top.tb_k32.B1.uart_i.rx_data_reg[5] top.tb_k32.B1.uart_i.rx_data_reg[4] top.tb_k32.B1.uart_i.rx_data_reg[3] top.tb_k32.B1.uart_i.rx_data_reg[2] top.tb_k32.B1.uart_i.rx_data_reg[1] top.tb_k32.B1.uart_i.rx_data_reg[0]
+[pattern_trace] 1
+[pattern_trace] 0

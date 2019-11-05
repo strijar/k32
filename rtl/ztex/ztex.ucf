@@ -1,0 +1,7 @@
+NET "clk" LOC = "K14" | IOSTANDARD = LVCMOS33;
+NET "clk" PERIOD = 48000 KHz HIGH 50%;
+
+NET "reset" LOC = "R3" | IOSTANDARD = LVTTL | PULLDOWN;
+
+NET "uart_tx"  LOC = "C13" | DRIVE = 8 | SLEW = SLOW;
+NET "uart_rx"  LOC = "A14";
