@@ -13,7 +13,7 @@ SRC = \
     txt_util.vhd\
     trace.vhd\
     tb_k32.vhd\
-    ram_life_16x16.vhd
+    ram_life_8x8.vhd
 
 OBJS = \
     work/txt_util.o \
@@ -24,7 +24,7 @@ OBJS = \
     work/k32_dstack.o \
     work/k32_ex.o \
     work/k32.o \
-    work/ram_life_16x16.o \
+    work/ram_life_8x8.o \
     work/uart.o \
     work/tb_k32.o
 

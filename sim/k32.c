@@ -21,13 +21,13 @@ typedef union {
         unsigned int x          : 5;
         unsigned int dstack     : 3;
         unsigned int rstack     : 3;
-        unsigned int free       : 4;
+        unsigned int free       : 3;
         unsigned int bmem       : 1;
         unsigned int nt         : 1;
         unsigned int tr         : 1;
         unsigned int tn         : 1;
         unsigned int rpc        : 1;
-        unsigned int op         : 4;
+        unsigned int op         : 5;
         unsigned int b_sel      : 2;
         unsigned int a_sel      : 3;
     };
@@ -326,7 +326,7 @@ int main() {
 
     load("k32_vec.bin",  0x0000);
     load("k32_main.bin", 0x0020);
-    load("k32_nuc.bin",  0x8000);
+    load("k32_nuc.bin",  0x0800);
 
     while(1) {
         step();

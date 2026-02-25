@@ -142,52 +142,52 @@ begin
             ds_top <= ds_in.n;
         elsif decode.alu = '1' then
             case decode.alu_op is
-                when x"0" =>
+                when OP_ADD =>
                     ds_top <= alu_a + alu_b;
 
-                when x"1" =>
+                when OP_SUB =>
                     ds_top <= alu_a - alu_b;
 
-                when x"2" =>
+                when OP_AND =>
                     ds_top <= alu_a and alu_b;
 
-                when x"3" =>
+                when OP_OR =>
                     ds_top <= alu_a or alu_b;
 
-                when x"4" =>
+                when OP_XOR =>
                     ds_top <= alu_a xor alu_b;
 
-                when x"5" =>
+                when OP_NOT =>
                     ds_top <= not alu_a;
 
-                when x"6" =>
+                when OP_EQ =>
                     if alu_a = alu_b then
                         ds_top <= (others => '1');
                     else
                         ds_top <= (others => '0');
                     end if;
 
-                when x"7" =>
+                when OP_LT =>
                     if signed(alu_a) < signed(alu_b) then
                         ds_top <= (others => '1');
                     else
                         ds_top <= (others => '0');
                     end if;
 
-                when x"8" =>
+                when OP_LT_U =>
                     if alu_a < alu_b then
                         ds_top <= (others => '1');
                     else
                         ds_top <= (others => '0');
                     end if;
 
-                when x"9" =>
+                when OP_SRL =>
                     ds_top <= alu_a srl to_integer(unsigned(alu_b(4 downto 0)));
 
-                when x"A" =>
+                when OP_SLL =>
                     ds_top <= alu_a sll to_integer(unsigned(alu_b(4 downto 0)));
 
-                when x"B" =>
+                when OP_READ =>
                     dbus_re <= '1';
 
                 when others =>

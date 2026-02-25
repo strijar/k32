@@ -3,8 +3,8 @@
     0< if 1+ then
 
     ]asm
-        alu_a:dN	alu_b:X alu:<< T->N	1 or	alu     ( swap 2* )
-        alu_a:dN	               T->N		alu     ( swap )
+        alu_a:dN        alu_b:X alu:<< T->N     1 or    alu     ( swap 2* )
+        alu_a:dN                       T->N             alu     ( swap )
     asm[
 
     rot 2dup

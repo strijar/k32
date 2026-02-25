@@ -1,9 +1,9 @@
 \ Cross-compiler for the K32
 \ Based on J1 sources
 
-vocabulary k32assembler		\ assembly storage and instructions
-vocabulary metacompiler		\ the cross-compiling words
-vocabulary k32target		\ actual target words
+vocabulary k32assembler         \ assembly storage and instructions
+vocabulary metacompiler         \ the cross-compiling words
+vocabulary k32target            \ actual target words
 
 : k32asm
     only
@@ -31,18 +31,18 @@ k32asm
 
 variable tdp
 
-: there		tdp @ ;
-: tc!		tflash + c! ;
-: tc@		tflash + c@ ;
+: there         tdp @ ;
+: tc!           tflash + c! ;
+: tc@           tflash + c@ ;
 
-: t!		tflash + ! ;
-: t@		tflash + @ ;
+: t!            tflash + ! ;
+: t@            tflash + @ ;
 
-: talign	tdp @ 3 + $FFFFFFFC and tdp ! ;
+: talign        tdp @ 3 + $FFFFFFFC and tdp ! ;
 
-: tc,		there tc! 1 tdp +! ;
-: t,		there tflash + ! tcell tdp +! ;
-: org		tdp ! ;
+: tc,           there tc! 1 tdp +! ;
+: t,            there tflash + ! tcell tdp +! ;
+: org           tdp ! ;
 
 variable dict
 variable dict'
@@ -77,7 +77,7 @@ labels 65536 cells 0 fill
     dup tc,
 
     2dup bounds do
-	i c@ tc,
+        i c@ tc,
     loop
 
     talign
@@ -87,13 +87,13 @@ labels 65536 cells 0 fill
 
 : setlabel ( c-addr u -- )
     atlabel? if
-	2drop
+        2drop
     else
-	2dup type ." : 0x"
-	preserve
-	labels there
-	hex dup . decimal cr
-	cells + !
+        2dup type ." : 0x"
+        preserve
+        labels there
+        hex dup . decimal cr
+        cells + !
     then
 ;
 
@@ -102,49 +102,49 @@ labels 65536 cells 0 fill
     setlabel
 ;
 
-: alu_a		26 lshift ;
-: alu_b		24 lshift or ;
-: alu_op	20 lshift or ;
+: alu_a         26 lshift ;
+: alu_b         24 lshift or ;
+: alu_op        19 lshift or ;
 
-: alu_a:dT	0 alu_a ;
-: alu_a:dN	1 alu_a ;
-: alu_a:rT	2 alu_a ;
-: alu_a:rN	3 alu_a ;
-: alu_a:cpu	4 alu_a ;
-: alu_a:X	5 alu_a ;
-: alu_a:dSP	6 alu_a ;
+: alu_a:dT      0 alu_a ;
+: alu_a:dN      1 alu_a ;
+: alu_a:rT      2 alu_a ;
+: alu_a:rN      3 alu_a ;
+: alu_a:cpu     4 alu_a ;
+: alu_a:X       5 alu_a ;
+: alu_a:dSP     6 alu_a ;
 
-: alu_b:X	0 alu_b ;
-: alu_b:dT	1 alu_b ;
-: alu_b:dN	2 alu_b ;
-: alu_b:rN	3 alu_b ;
+: alu_b:X       0 alu_b ;
+: alu_b:dT      1 alu_b ;
+: alu_b:dN      2 alu_b ;
+: alu_b:rN      3 alu_b ;
 
-: alu:+		0 alu_op ;
-: alu:-		1 alu_op ;
-: alu:&		2 alu_op ;
-: alu:|		3 alu_op ;
-: alu:^		4 alu_op ;
-: alu:~		5 alu_op ;
-: alu:=		6 alu_op ;
-: alu:<		7 alu_op ;
-: alu:u<	8 alu_op ;
-: alu:>>	9 alu_op ;
-: alu:<<	10 alu_op ;
-: alu:[a]	11 alu_op ;
-: alu:break	15 alu_op ;
+: alu:+         0 alu_op ;
+: alu:-         1 alu_op ;
+: alu:&         2 alu_op ;
+: alu:|         3 alu_op ;
+: alu:^         4 alu_op ;
+: alu:~         5 alu_op ;
+: alu:=         6 alu_op ;
+: alu:<         7 alu_op ;
+: alu:u<        8 alu_op ;
+: alu:>>        9 alu_op ;
+: alu:<<        10 alu_op ;
+: alu:[a]       11 alu_op ;
+: alu:break     15 alu_op ;
 
-: R->PC		1 19 lshift ;
-: T->N		1 18 lshift or ;
-: T->R		1 17 lshift or ;
-: N->[T]	1 16 lshift or ;
-: bmem		1 15 lshift or ;
+: R->PC         1 18 lshift ;
+: T->N          1 17 lshift or ;
+: T->R          1 16 lshift or ;
+: N->[T]        1 15 lshift or ;
+: bmem          1 14 lshift or ;
 
-: r:push	1 8 lshift or ;
-: r:pop		2 8 lshift or ;
-: r:load	3 8 lshift or ;
-: d:push	1 5 lshift or ;
-: d:pop		2 5 lshift or ;
-: d:load	3 5 lshift or ;
+: r:push        1 8 lshift or ;
+: r:pop         2 8 lshift or ;
+: r:load        3 8 lshift or ;
+: d:push        1 5 lshift or ;
+: d:pop         2 5 lshift or ;
+: d:load        3 5 lshift or ;
 
 : ubranch
     ." ubranch 0x" dup hex . decimal cr
@@ -161,9 +161,9 @@ labels 65536 cells 0 fill
     2 29 lshift or t,
 ;
 
-: alu		3 29 lshift or t, ;
+: alu           3 29 lshift or t, ;
 
-: return	R->PC r:pop alu ;
+: return        R->PC r:pop alu ;
 
 \ tcompile is like "STATE": it is true when compiling
 
@@ -176,7 +176,7 @@ variable tcompile
 : (literal)
     dup $80000000 and if
         $FFFFFFFF xor recurse
-	alu_a:dT alu:~ alu
+        alu_a:dT alu:~ alu
     else
         $80000000 or t,
     then
@@ -229,8 +229,8 @@ meta
 ;
 
 : prevsafe?
-    lookback $E0000000 and $60000000 =		\ is an ALU
-    lookback 0 T->R r:pop and 0= and		\ does not touch RStack
+    lookback $E0000000 and $60000000 =          \ is an ALU
+    lookback 0 T->R r:pop and 0= and            \ does not touch RStack
 ;
 
 : call>goto
@@ -252,12 +252,12 @@ meta
             atlabel? invert prevsafe? and if
                 there tcell - alu>return
             else
-        	cr
+                cr
                 return
             then
         then
     else
-	cr
+        cr
         return
     then
     cr
@@ -364,7 +364,7 @@ decimal
     there >r
     dup tc,
     0 do
-	count tc,
+        count tc,
     loop
     drop
     talign
@@ -378,9 +378,9 @@ decimal
 : create
     wordstr setlabel:
     create
-	there ,
+        there ,
     does>
-	@ do-number
+        @ do-number
 ;
 
 : allot     tdp +! ;
@@ -388,25 +388,25 @@ decimal
 : variable
     wordstr setlabel
     create
-	there , 0 t,
+        there , 0 t,
     does>
-	@ do-number
+        @ do-number
 ;
 
 : 2variable
     wordstr setlabel 
     create 
-	there , 0 t, 0 t,
+        there , 0 t, 0 t,
     does>
-	@ do-number 
+        @ do-number 
 ;
 
 : createdoes
     wordstr setlabel
     create
-	there , ' ,
+        there , ' ,
     does>
-	dup @ dup referenced (literal) cell+ @ execute
+        dup @ dup referenced (literal) cell+ @ execute
 ;
 
 : jumptable 
@@ -441,9 +441,9 @@ decimal
 : value
     wordstr setlabel
     create
-	there , t,
+        there , t,
     does>
-	@ do-number
+        @ do-number
 ;
 
 : to ( u "name" -- )
@@ -454,21 +454,21 @@ decimal
 : array
     wordstr setlabel
     create
-	there , 0 do
-	    0 t,
-	loop
+        there , 0 do
+            0 t,
+        loop
     does>
-	s" cells" evaluate @ do-number s" +" evaluate
+        s" cells" evaluate @ do-number s" +" evaluate
 ;
 
 : 2array
     wordstr setlabel
     create
-	there , 2* 0 do
-	    0 t,
-	loop
+        there , 2* 0 do
+            0 t,
+        loop
     does>
-	s" 2* cells" evaluate @ do-number s" +" evaluate
+        s" 2* cells" evaluate @ do-number s" +" evaluate
 ;
 
 ( eforth's way of handling constants         JCB 13:12 09/03/10)

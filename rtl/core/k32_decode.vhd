@@ -49,13 +49,13 @@ architecture rtl of k32_decode is
 begin
     decode.alu_a <= instr(28 downto 26);
     decode.alu_b <= instr(25 downto 24);
-    decode.alu_op <= instr(23 downto 20);
+    decode.alu_op <= instr(23 downto 19);
 
-    decode.alu_r_pc <= instr(19);
-    decode.alu_t_n <= instr(18);
-    decode.alu_t_r <= instr(17);
-    decode.alu_store <= instr(16);
-    decode.alu_byte <= instr(15);
+    decode.alu_r_pc <= instr(18);
+    decode.alu_t_n <= instr(17);
+    decode.alu_t_r <= instr(16);
+    decode.alu_store <= instr(15);
+    decode.alu_byte <= instr(14);
 
     decode.alu_x <= unsigned(instr(4 downto 0));
 

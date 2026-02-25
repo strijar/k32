@@ -1,7 +1,9 @@
 \ Game life test for K32
 
-3 constant      #w
-3 constant      #h
+include lib/vt100.fs
+
+5 constant      #w
+5 constant      #h
 
 [ 1 #w lshift ] constant w
 [ 1 #h lshift ] constant h
@@ -37,18 +39,22 @@ variable        new'
 ;
 
 : showrow ( i -- )
+    cursor-save
+
     old' @ +
     w bounds
     do
         i c@ if
-            [char] #
+            bright green fg [char] #
         else
-            [char] .
+            normal white fg [char] .
         then
         emit
         bl emit
     loop
-    cr
+
+    cursor-unsave
+    cursor-down
 ;
 
 : show
@@ -112,9 +118,14 @@ variable        new'
     world w + new' !
 
     d# 3 glider
+    d# 11 row+ row+ row+ blink
+
+    page
 
     begin
+        d# 10 d# 5 cursor-xy
         show cr
         gen
+        d# 1000000 0do loop
     again
 ;fallthru

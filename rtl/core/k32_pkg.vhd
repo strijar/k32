@@ -39,7 +39,20 @@ package k32_pkg is
     constant STACK_BITS         : integer := 5;
 
     subtype cell_type is std_logic_vector(CELL_BITS-1 downto 0);
-    subtype op_type is std_logic_vector(3 downto 0);
+    subtype op_type is std_logic_vector(4 downto 0);
+
+    constant OP_ADD     : op_type := b"00000";
+    constant OP_SUB     : op_type := b"00001";
+    constant OP_AND     : op_type := b"00010";
+    constant OP_OR      : op_type := b"00011";
+    constant OP_XOR     : op_type := b"00100";
+    constant OP_NOT     : op_type := b"00101";
+    constant OP_EQ      : op_type := b"00110";
+    constant OP_LT      : op_type := b"00111";
+    constant OP_LT_U    : op_type := b"01000";
+    constant OP_SRL     : op_type := b"01001";
+    constant OP_SLL     : op_type := b"01010";
+    constant OP_READ    : op_type := b"01011";
 
     type stack_op_type is record
         push            : std_logic;

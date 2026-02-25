@@ -1,12 +1,12 @@
 \ Nucleus: ANS Forth core and ext words
 \ Based on J1 sources
 
-$0		constant false
+$0              constant false
 10              constant =cr
 32              constant =bl
 
-$10000		constant #uart_data
-$10004		constant #uart_busy
+$10000          constant #uart_data
+$10004          constant #uart_busy
 
 : emit
     #uart_data !
@@ -30,9 +30,9 @@ $10004		constant #uart_busy
     loop
 ;
 
-: count		dup 1+ swap c@ ;
-: 2swap		rot >r rot r> ;
-: 2drop		drop drop ;
+: count         dup 1+ swap c@ ;
+: 2swap         rot >r rot r> ;
+: 2drop         drop drop ;
 : ?dup          dup if dup then ;
 : negate        invert 1+ ;
 
@@ -61,9 +61,9 @@ $10004		constant #uart_busy
 : fill ( c-addr u char -- )
     >r  bounds
     begin
-	2dupxor
+        2dupxor
     while
-	r@ over C! 1+
+        r@ over C! 1+
     repeat
     r> drop 2drop
 ;

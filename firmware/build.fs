@@ -7,7 +7,7 @@ include compile/save.fs
 target
 
 dict[
-    $8000 org
+    $0800 org
     module[ NUC
         include lib/nuc.fs
         include lib/math.fs
@@ -16,14 +16,14 @@ dict[
 
     $20 org
     module[ MAIN
-	include main_life.fs
+        include main_life.fs
     ]module
 ]dict
 
 0 org
 code VECTORS
-    main	ubranch
-    .irq.	ubranch
+    main        ubranch
+    .irq.       ubranch
     dict,
 end-code
 
