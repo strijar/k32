@@ -38,9 +38,9 @@ use work.k32_pkg.all;
 
 entity k32_decode is
     port (
-	irq	: in irq_type;
-	instr	: in std_logic_vector(CELL_BITS-1 downto 0);
-	decode	: out decode_type
+        irq     : in irq_type;
+        instr   : in std_logic_vector(CELL_BITS-1 downto 0);
+        decode  : out decode_type
     );
 end k32_decode;
 
@@ -62,59 +62,59 @@ begin
     decode.lit <= instr(CELL_BITS-1);
 
     process (instr) begin
-	decode.alu_r_op.push <= '0';
-	decode.alu_r_op.pop <= '0';
-	decode.alu_r_op.load <= '0';
+        decode.alu_r_op.push <= '0';
+        decode.alu_r_op.pop <= '0';
+        decode.alu_r_op.load <= '0';
 
-	case instr(10 downto 8) is
-	    when "001" => decode.alu_r_op.push <= '1';
-	    when "010" => decode.alu_r_op.pop <= '1';
-	    when "011" => decode.alu_r_op.load <= '1';
-	    when others => null;
-	end case;
+        case instr(10 downto 8) is
+            when "001" => decode.alu_r_op.push <= '1';
+            when "010" => decode.alu_r_op.pop <= '1';
+            when "011" => decode.alu_r_op.load <= '1';
+            when others => null;
+        end case;
     end process;
 
     process (instr) begin
-	decode.alu_d_op.push <= '0';
-	decode.alu_d_op.pop <= '0';
-	decode.alu_d_op.load <= '0';
+        decode.alu_d_op.push <= '0';
+        decode.alu_d_op.pop <= '0';
+        decode.alu_d_op.load <= '0';
 
-	case instr(7 downto 5) is
-	    when "001" => decode.alu_d_op.push <= '1';
-	    when "010" => decode.alu_d_op.pop <= '1';
-	    when "011" => decode.alu_d_op.load <= '1';
-	    when others => null;
-	end case;
+        case instr(7 downto 5) is
+            when "001" => decode.alu_d_op.push <= '1';
+            when "010" => decode.alu_d_op.pop <= '1';
+            when "011" => decode.alu_d_op.load <= '1';
+            when others => null;
+        end case;
     end process;
 
     process (irq, instr) begin
-	decode.jump <= '0';
-	decode.cond_jump <= '0';
-	decode.call <= '0';
-	decode.alu <= '0';
+        decode.jump <= '0';
+        decode.cond_jump <= '0';
+        decode.call <= '0';
+        decode.alu <= '0';
 
-	if irq.req = '1' then
-	    decode.call <= '1';
-	    decode.target <= irq.addr;
-	else
-	    decode.target <= instr;
+        if irq.req = '1' then
+            decode.call <= '1';
+            decode.target <= irq.addr;
+        else
+            decode.target <= instr;
 
-	    case instr(CELL_BITS-1 downto CELL_BITS-3) is
-		when "000" =>
-		    decode.jump <= '1';
+            case instr(CELL_BITS-1 downto CELL_BITS-3) is
+                when "000" =>
+                    decode.jump <= '1';
 
-		when "001" =>
-		    decode.cond_jump <= '1';
+                when "001" =>
+                    decode.cond_jump <= '1';
 
-		when "010" =>
-		    decode.call <= '1';
+                when "010" =>
+                    decode.call <= '1';
 
-		when "011" =>
-		    decode.alu <= '1';
+                when "011" =>
+                    decode.alu <= '1';
 
-		when others => null;
-	    end case;
-	end if;
+                when others => null;
+            end case;
+        end if;
     end process;
 
 end;

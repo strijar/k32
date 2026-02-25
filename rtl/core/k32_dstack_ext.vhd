@@ -38,15 +38,15 @@ use work.k32_pkg.all;
 
 entity k32_dstack_ext is
     generic (
-        depth		: positive := 16
+        depth           : positive := 16
     );
     port (
-	clk		: in std_logic;
-	rst		: in std_logic;
-	en		: in std_logic;
+        clk             : in std_logic;
+        rst             : in std_logic;
+        en              : in std_logic;
 
-	din		: in dstack_in_type;
-	dout		: out dstack_out_type
+        din             : in dstack_in_type;
+        dout            : out dstack_out_type
     );
 end k32_dstack_ext;
 
@@ -54,8 +54,8 @@ architecture rtl of k32_dstack_ext is
 
     type regs_type is array(natural range 0 to depth) of unsigned(CELL_BITS-1 downto 0);
 
-    signal r		: regs_type;
-    signal sp		: unsigned(STACK_BITS-1 downto 0);
+    signal r            : regs_type;
+    signal sp           : unsigned(STACK_BITS-1 downto 0);
 
 begin
 
@@ -64,52 +64,52 @@ begin
     dout.sp <= sp;
 
     process (clk, rst, en, din) begin
-	if rising_edge(clk) then
-	    if rst = '1' then
-		for i in 0 to depth loop
-		    r(i) <= (others => '0');
-		end loop;
+        if rising_edge(clk) then
+            if rst = '1' then
+                for i in 0 to depth loop
+                    r(i) <= (others => '0');
+                end loop;
 
-		sp <= (others => '1');
-	    elsif en = '1' then
+                sp <= (others => '1');
+            elsif en = '1' then
 
-		if din.op.push = '1' then
-		    if din.t_we = '1' then
-			r(0) <= din.t;
-		    else 
-			r(0) <= r(depth);
-		    end if;
+                if din.op.push = '1' then
+                    if din.t_we = '1' then
+                        r(0) <= din.t;
+                    else 
+                        r(0) <= r(depth);
+                    end if;
 
-		    for i in 0 to depth-1 loop
-			r(i+1) <= r(i);
-		    end loop;
+                    for i in 0 to depth-1 loop
+                        r(i+1) <= r(i);
+                    end loop;
 
-		    sp <= sp + 1;
-		elsif din.op.pop = '1' then
-		    if din.t_we = '1' then
-			r(0) <= din.t;
-		    else
-			r(0) <= r(1);
-		    end if;
+                    sp <= sp + 1;
+                elsif din.op.pop = '1' then
+                    if din.t_we = '1' then
+                        r(0) <= din.t;
+                    else
+                        r(0) <= r(1);
+                    end if;
 
-		    for i in 1 to depth-1 loop
-			r(i) <= r(i+1);
-		    end loop;
+                    for i in 1 to depth-1 loop
+                        r(i) <= r(i+1);
+                    end loop;
 
-		    r(depth) <= r(0);
-		    sp <= sp - 1;
+                    r(depth) <= r(0);
+                    sp <= sp - 1;
 
-		else
-		    if din.t_we = '1' then
-			r(0) <= din.t;
-		    end if;
+                else
+                    if din.t_we = '1' then
+                        r(0) <= din.t;
+                    end if;
 
-		    if din.we = '1' then
-			r(1) <= r(0);
-		    end if;
-		end if;
-	    end if;
-	end if;
+                    if din.we = '1' then
+                        r(1) <= r(0);
+                    end if;
+                end if;
+            end if;
+        end if;
     end process;
 
 end;

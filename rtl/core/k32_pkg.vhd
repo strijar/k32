@@ -35,117 +35,117 @@ use ieee.numeric_std.all;
 
 package k32_pkg is
 
-    constant CELL_BITS		: integer := 32;
+    constant CELL_BITS          : integer := 32;
 
-    constant IM_ADDR_BITS	: integer := 5;
-    constant DM_ADDR_BITS	: integer := 5;
-    constant STACK_BITS		: integer := 5;
+    constant IM_ADDR_BITS       : integer := 5;
+    constant DM_ADDR_BITS       : integer := 5;
+    constant STACK_BITS         : integer := 5;
 
     subtype cell_type is std_logic_vector(CELL_BITS-1 downto 0);
     subtype op_type is std_logic_vector(3 downto 0);
 
     type stack_op_type is record
-	push		: std_logic;
-	pop		: std_logic;
-	load		: std_logic;
+        push            : std_logic;
+        pop             : std_logic;
+        load            : std_logic;
     end record;
 
     type decode_type is record
-	lit 		: std_logic;
+        lit             : std_logic;
 
-	alu 		: std_logic;
-	alu_a		: std_logic_vector(2 downto 0);
-	alu_b		: std_logic_vector(1 downto 0);
-	alu_op 		: op_type;
+        alu             : std_logic;
+        alu_a           : std_logic_vector(2 downto 0);
+        alu_b           : std_logic_vector(1 downto 0);
+        alu_op          : op_type;
 
-	alu_t_n		: std_logic;
-	alu_t_r		: std_logic;
-	alu_r_pc	: std_logic;
-	alu_store	: std_logic;
-	alu_byte	: std_logic;
+        alu_t_n         : std_logic;
+        alu_t_r         : std_logic;
+        alu_r_pc        : std_logic;
+        alu_store       : std_logic;
+        alu_byte        : std_logic;
 
-	alu_d_op	: stack_op_type;
-	alu_r_op	: stack_op_type;
-	alu_x		: unsigned(4 downto 0);
+        alu_d_op        : stack_op_type;
+        alu_r_op        : stack_op_type;
+        alu_x           : unsigned(4 downto 0);
 
-	jump		: std_logic;
-	cond_jump	: std_logic;
-	call		: std_logic;
-	target		: cell_type;
+        jump            : std_logic;
+        cond_jump       : std_logic;
+        call            : std_logic;
+        target          : cell_type;
     end record;
 
     type stack_type is array(natural range 0 to (2**(STACK_BITS))-1) of unsigned(CELL_BITS-1 downto 0);
 
     type fetch_type is record
-	pc		: unsigned(CELL_BITS-1 downto 0);
+        pc              : unsigned(CELL_BITS-1 downto 0);
     end record;
 
     type exception_type is record
-	rstack_under	: std_logic;
+        rstack_under    : std_logic;
     end record;
 
     type ex_type is record
-	d_t		: unsigned(CELL_BITS-1 downto 0);
-	r_t		: unsigned(CELL_BITS-1 downto 0);
+        d_t             : unsigned(CELL_BITS-1 downto 0);
+        r_t             : unsigned(CELL_BITS-1 downto 0);
     end record;
 
     -- Data stack
 
 
     type dstack_in_type is record
-	we		: std_logic;
-	op		: stack_op_type;
-	t		: unsigned(CELL_BITS-1 downto 0);
-	t_we		: std_logic;
+        we              : std_logic;
+        op              : stack_op_type;
+        t               : unsigned(CELL_BITS-1 downto 0);
+        t_we            : std_logic;
     end record;
 
     type dstack_out_type is record
-	sp		: unsigned(STACK_BITS-1 downto 0);
-	t		: unsigned(CELL_BITS-1 downto 0);
-	n		: unsigned(CELL_BITS-1 downto 0);
+        sp              : unsigned(STACK_BITS-1 downto 0);
+        t               : unsigned(CELL_BITS-1 downto 0);
+        n               : unsigned(CELL_BITS-1 downto 0);
     end record;
 
     -- Instruction bus
 
     type ibus_out_type is record
-	addr	: cell_type;
+        addr    : cell_type;
     end record;
 
     type ibus_in_type is record
-	dat	: cell_type;
+        dat     : cell_type;
     end record;
 
     -- Data/IO bus
 
     type dbus_out_type is record
-	addr	: cell_type;
-	dat	: cell_type;
-	we	: std_logic_vector(3 downto 0);
-	re	: std_logic;
+        addr    : cell_type;
+        dat     : cell_type;
+        we      : std_logic_vector(3 downto 0);
+        re      : std_logic;
     end record;
 
     type dbus_in_type is record
-	dat	: cell_type;
-	ready	: std_logic;
+        dat     : cell_type;
+        ready   : std_logic;
     end record;
 
     type irq_type is record
-	req	: std_logic;
-	addr	: cell_type;
+        req     : std_logic;
+        addr    : cell_type;
     end record;
 
     -- Trace
 
     type trace_type is record
-	fetch	: fetch_type;
-	decode	: decode_type;
-	ds	: dstack_out_type;
-	rs	: dstack_out_type;
+        fetch   : fetch_type;
+        decode  : decode_type;
+        ds      : dstack_out_type;
+        rs      : dstack_out_type;
     end record;
 
     -- Vectors
 
-    constant START_ADDR		: cell_type := x"0000_0000";
-    constant IRQ_ADDR		: cell_type := x"0000_0004";
+    constant START_ADDR         : cell_type := x"0000_0000";
+    constant IRQ_ADDR           : cell_type := x"0000_0004";
 
 end package;

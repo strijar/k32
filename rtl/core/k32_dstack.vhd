@@ -38,23 +38,23 @@ use work.k32_pkg.all;
 
 entity k32_dstack is
     port (
-	clk		: in std_logic;
-	rst		: in std_logic;
-	en		: in std_logic;
+        clk             : in std_logic;
+        rst             : in std_logic;
+        en              : in std_logic;
 
-	din		: in dstack_in_type;
-	dout		: out dstack_out_type
+        din             : in dstack_in_type;
+        dout            : out dstack_out_type
     );
 end k32_dstack;
 
 architecture rtl of k32_dstack is
 
-    signal stack	: stack_type := (others => (others => '0'));
+    signal stack        : stack_type := (others => (others => '0'));
 
-    signal sp		: unsigned(STACK_BITS-1 downto 0);
-    signal sp_next	: unsigned(STACK_BITS-1 downto 0) := (others => '0');
-    signal t		: unsigned(CELL_BITS-1 downto 0);
-    signal n		: unsigned(CELL_BITS-1 downto 0);
+    signal sp           : unsigned(STACK_BITS-1 downto 0);
+    signal sp_next      : unsigned(STACK_BITS-1 downto 0) := (others => '0');
+    signal t            : unsigned(CELL_BITS-1 downto 0);
+    signal n            : unsigned(CELL_BITS-1 downto 0);
 
 begin
 
@@ -65,34 +65,34 @@ begin
     dout.sp <= sp;
 
     process (din, sp) begin
-	sp_next <= sp;
+        sp_next <= sp;
 
-	if din.op.push = '1' then
-	    sp_next <= sp + 1;
-	elsif din.op.pop = '1' then
-	    sp_next <= sp - 1;
-	end if;
+        if din.op.push = '1' then
+            sp_next <= sp + 1;
+        elsif din.op.pop = '1' then
+            sp_next <= sp - 1;
+        end if;
     end process;
 
     process (clk, rst, en, din, sp_next, t) begin
-	if rising_edge(clk) then
-	    if rst = '1' then
-		t <= (others => '0');
-		sp <= (others =>'0');
-	    elsif en = '1' then
-		sp <= sp_next;
+        if rising_edge(clk) then
+            if rst = '1' then
+                t <= (others => '0');
+                sp <= (others =>'0');
+            elsif en = '1' then
+                sp <= sp_next;
 
-		if din.t_we = '1' then
-		    t <= din.t;
-		elsif din.op.pop = '1' then
-		    t <= n;
-		end if;
+                if din.t_we = '1' then
+                    t <= din.t;
+                elsif din.op.pop = '1' then
+                    t <= n;
+                end if;
 
-		if din.we = '1' or din.op.push = '1' then
-		    stack(to_integer(unsigned(sp_next))) <= t;
-		end if;
-	    end if;
-	end if;
+                if din.we = '1' or din.op.push = '1' then
+                    stack(to_integer(unsigned(sp_next))) <= t;
+                end if;
+            end if;
+        end if;
     end process;
 
 end;

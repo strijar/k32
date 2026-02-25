@@ -1,4 +1,4 @@
-GHDL=ghdl
+GHDL=ghdl-gcc
 GHDLFLAGS= --std=93 --ieee=synopsys --workdir=work
 GHDLRUNFLAGS=--wave=tb_k32.ghw
 

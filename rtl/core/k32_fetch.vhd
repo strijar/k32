@@ -38,52 +38,52 @@ use work.k32_pkg.all;
 
 entity k32_fetch is
     port (
-	clk		: in std_logic;
-	rst		: in std_logic;
-	en		: in std_logic;
+        clk             : in std_logic;
+        rst             : in std_logic;
+        en              : in std_logic;
 
-	decode 		: in decode_type;
+        decode          : in decode_type;
 
-	ex		: in ex_type;
-	fetch		: out fetch_type;
+        ex              : in ex_type;
+        fetch           : out fetch_type;
 
-	ibus_out	: out ibus_out_type
+        ibus_out        : out ibus_out_type
     );
 end k32_fetch;
 
 architecture rtl of k32_fetch is
 
-    signal pc, pc_next	: unsigned(CELL_BITS-1 downto 0) := (others => '0');
-    signal target	: unsigned(CELL_BITS-1 downto 0) := (others => '0');
+    signal pc, pc_next  : unsigned(CELL_BITS-1 downto 0) := (others => '0');
+    signal target       : unsigned(CELL_BITS-1 downto 0) := (others => '0');
 
 begin
     target <= unsigned("000" & decode.target(CELL_BITS-4 downto 0));
     ibus_out.addr <= std_logic_vector(pc_next);
 
     process (rst, en, decode, pc, ex, target) begin
-	pc_next <= pc + 4;
+        pc_next <= pc + 4;
 
-	if rst = '1' or en = '0' then
-	    pc_next <= pc;
-	elsif decode.jump = '1' or decode.call = '1' then
-	    pc_next <= target;
-	elsif decode.cond_jump = '1' and ex.d_t = x"0" then
-	    pc_next <= target;
-	elsif decode.alu = '1' and decode.alu_r_pc = '1' then
-	    pc_next <= ex.r_t;
-	end if;
+        if rst = '1' or en = '0' then
+            pc_next <= pc;
+        elsif decode.jump = '1' or decode.call = '1' then
+            pc_next <= target;
+        elsif decode.cond_jump = '1' and ex.d_t = x"0" then
+            pc_next <= target;
+        elsif decode.alu = '1' and decode.alu_r_pc = '1' then
+            pc_next <= ex.r_t;
+        end if;
     end process;
 
     fetch.pc <= pc;
 
     process (clk, rst) begin
-	if rising_edge(clk) then
-	    if rst = '1' then
-		pc <= unsigned(START_ADDR);
-	    else
-		pc <= pc_next;
-	    end if;
-	end if;
+        if rising_edge(clk) then
+            if rst = '1' then
+                pc <= unsigned(START_ADDR);
+            else
+                pc <= pc_next;
+            end if;
+        end if;
     end process;
 
 end;
