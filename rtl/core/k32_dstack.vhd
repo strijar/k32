@@ -1,5 +1,5 @@
 --
---  Copyright 2015 Oleg Belousov <belousov.oleg@gmail.com>,
+--  Copyright 2015-2026 Oleg Belousov <belousov.oleg@gmail.com>,
 --
 --  All rights reserved.
 --
