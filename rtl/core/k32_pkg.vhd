@@ -36,9 +36,6 @@ use ieee.numeric_std.all;
 package k32_pkg is
 
     constant CELL_BITS          : integer := 32;
-
-    constant IM_ADDR_BITS       : integer := 5;
-    constant DM_ADDR_BITS       : integer := 5;
     constant STACK_BITS         : integer := 5;
 
     subtype cell_type is std_logic_vector(CELL_BITS-1 downto 0);
@@ -90,7 +87,6 @@ package k32_pkg is
     end record;
 
     -- Data stack
-
 
     type dstack_in_type is record
         we              : std_logic;
