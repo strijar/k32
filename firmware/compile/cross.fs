@@ -501,6 +501,19 @@ decimal
 : d# 0. bl parse 10 base>number ;
 : h# 0. bl parse 16 base>number ;
 
+2147483648.0e0 fconstant Q31_SCALE
+
+: q# ( -- )
+    bl parse                ( addr u )
+    2dup >float 0= if
+        -1 abort" bad float"
+    then
+    2drop                   ( -- f: val )
+
+    Q31_SCALE f* fround f>s ( n32 )
+    do-number
+;
+
 ( Conditionals                               JCB 13:12 09/03/10)
 : if
     there
