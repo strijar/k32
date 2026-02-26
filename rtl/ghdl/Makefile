@@ -1,4 +1,4 @@
-GHDL=ghdl-llvm
+GHDL=ghdl
 GHDLFLAGS= --std=93 --ieee=synopsys --workdir=work
 GHDLRUNFLAGS=--wave=tb_k32.ghw
 
@@ -6,6 +6,8 @@ RAM = test
 
 SRC = \
     ../core/k32_pkg.vhd\
+    txt_util.vhd\
+    ram_$(RAM).vhd\
     ../core/k32_fetch.vhd\
     ../core/k32_decode.vhd\
     ../core/k32_dstack.vhd\
@@ -13,50 +15,17 @@ SRC = \
     ../core/k32_ex.vhd\
     ../core/k32.vhd\
     ../soc/uart.vhd\
-    txt_util.vhd\
     trace.vhd\
     tb_k32.vhd\
-    ram_$(RAM).vhd
 
-OBJS = \
-    work/txt_util.o \
-    work/k32_pkg.o \
-    work/trace.o \
-    work/k32_fetch.o \
-    work/k32_decode.o \
-    work/k32_dstack.o \
-    work/k32_q.o \
-    work/k32_ex.o \
-    work/k32.o \
-    work/ram_$(RAM).o \
-    work/uart.o \
-    work/tb_k32.o
+all: work/work-obj93.cf
 
-all: tb_k32
+work/work-obj93.cf: $(SRC)
+	mkdir -p work
+	$(GHDL) -a $(GHDLFLAGS) $(SRC)
 
-tb_k32: work/work-obj93.cf $(OBJS)
-	$(GHDL) -e $(GHDLFLAGS) $@
-
-work/work-obj93.cf:
-	mkdir work
-	$(GHDL) -i $(GHDLFLAGS) $(SRC)
-
-run: tb_k32
-	$(GHDL) -r tb_k32 $(GHDLRUNFLAGS)
+run: work/work-obj93.cf
+	$(GHDL) -r $(GHDLFLAGS) tb_k32 $(GHDLRUNFLAGS)
 
 clean:
-	rm -rf work tb_k32 *.o *.ghw *.log
-
-# Targets to analyze files
-
-$(OBJS): $(SRC)
-
-work/%.o: %.vhd
-	$(GHDL) -a $(GHDLFLAGS) $<
-
-work/%.o: ../core/%.vhd
-	$(GHDL) -a $(GHDLFLAGS) $<
-
-work/%.o: ../soc/%.vhd
-	$(GHDL) -a $(GHDLFLAGS) $<
-
+	rm -rf work *.ghw *.log
