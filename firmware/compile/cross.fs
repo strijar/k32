@@ -507,15 +507,22 @@ decimal
 
 2147483648.0e0 fconstant Q31_SCALE
 
-: q# ( -- )
+: f>q
+    Q31_SCALE f* fround f>s
+;
+
+: q:
     bl parse                ( addr u )
     2dup >float 0= if
         -1 abort" bad float"
     then
     2drop                   ( -- f: val )
 
-    Q31_SCALE f* fround f>s ( n32 )
-    do-number
+    f>q
+;
+
+: q#
+    q: do-number
 ;
 
 ( Conditionals                               JCB 13:12 09/03/10)
