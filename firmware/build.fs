@@ -1,6 +1,7 @@
 include compile/utils.fs
 include compile/cross.fs
 include compile/basewords.fs
+include compile/q_words.fs
 include compile/k32words.fs
 include compile/save.fs
 
@@ -16,7 +17,7 @@ dict[
 
     $20 org
     module[ MAIN
-        include main_life.fs
+        include main_test.fs
     ]module
 ]dict
 

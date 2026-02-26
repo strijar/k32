@@ -66,12 +66,17 @@ end k32_ex;
 
 architecture rtl of k32_ex is
 
-    signal ds_top       : unsigned(CELL_BITS-1 downto 0) := (others => '0');
+    signal alu_out      : unsigned(CELL_BITS-1 downto 0) := (others => '0');
     signal alu_a, alu_b : unsigned(CELL_BITS-1 downto 0);
 
     signal dbus_re      : std_logic;
     signal dbus_we      : std_logic;
     signal dbus_addr    : unsigned(CELL_BITS-1 downto 0);
+
+    signal q_mul_en     : std_logic;
+    signal q_mul_res    : unsigned(CELL_BITS-1 downto 0) := (others => '0');
+    signal q_add_res    : unsigned(CELL_BITS-1 downto 0) := (others => '0');
+    signal q_sub_res    : unsigned(CELL_BITS-1 downto 0) := (others => '0');
 
 begin
 
@@ -82,7 +87,7 @@ begin
     dbus_out.re <= dbus_re;
     dbus_out.addr <= std_logic_vector(dbus_addr);
 
-    dbus_addr <= ds_top;
+    dbus_addr <= alu_out;
     dbus_we <= decode.alu and decode.alu_store;
 
     process (dbus_we, decode.alu_x, ds_in.n) begin
@@ -114,6 +119,25 @@ begin
         end if;
     end process;
 
+    -- Q ops
+
+    q_i: entity work.k32_q
+        generic map(
+            mul_stages => 3
+        )
+        port map(
+            clk => clk,
+            rst => rst,
+
+            a => alu_a,
+            b => alu_b,
+            mul_en => q_mul_en,
+
+            mul_res => q_mul_res,
+            add_res => q_add_res,
+            sub_res => q_sub_res
+        );
+
     -- ALU
 
     WITH decode.alu_a SELECT alu_a <=
@@ -124,7 +148,7 @@ begin
         to_unsigned(cpu_id, CELL_BITS)  WHEN "100",
         resize(decode.alu_x, CELL_BITS) WHEN "101",
         resize(ds_in.sp, CELL_BITS)     WHEN "110",
-        (others => '0')                 WHEN others;
+        q_mul_res                       WHEN others;
 
     WITH decode.alu_b SELECT alu_b <=
         resize(decode.alu_x, CELL_BITS) WHEN "00",
@@ -132,63 +156,73 @@ begin
         ds_in.n                         WHEN "10",
         rs_in.t                         WHEN others;
 
-    process (decode, ds_in, rs_in, dbus_in, alu_a, alu_b) begin
-        ds_top <= ds_in.t;
+    process (decode, ds_in, rs_in, dbus_in, alu_a, alu_b, q_add_res, q_sub_res) begin
+        alu_out <= ds_in.t;
         dbus_re <= '0';
+        q_mul_en <= '0';
 
         if decode.lit = '1' then
-            ds_top <= unsigned('0' & decode.target(CELL_BITS-2 downto 0));
+            alu_out <= unsigned('0' & decode.target(CELL_BITS-2 downto 0));
         elsif decode.cond_jump = '1' then
-            ds_top <= ds_in.n;
+            alu_out <= ds_in.n;
         elsif decode.alu = '1' then
             case decode.alu_op is
                 when OP_ADD =>
-                    ds_top <= alu_a + alu_b;
+                    alu_out <= alu_a + alu_b;
 
                 when OP_SUB =>
-                    ds_top <= alu_a - alu_b;
+                    alu_out <= alu_a - alu_b;
 
                 when OP_AND =>
-                    ds_top <= alu_a and alu_b;
+                    alu_out <= alu_a and alu_b;
 
                 when OP_OR =>
-                    ds_top <= alu_a or alu_b;
+                    alu_out <= alu_a or alu_b;
 
                 when OP_XOR =>
-                    ds_top <= alu_a xor alu_b;
+                    alu_out <= alu_a xor alu_b;
 
                 when OP_NOT =>
-                    ds_top <= not alu_a;
+                    alu_out <= not alu_a;
 
                 when OP_EQ =>
                     if alu_a = alu_b then
-                        ds_top <= (others => '1');
+                        alu_out <= (others => '1');
                     else
-                        ds_top <= (others => '0');
+                        alu_out <= (others => '0');
                     end if;
 
                 when OP_LT =>
                     if signed(alu_a) < signed(alu_b) then
-                        ds_top <= (others => '1');
+                        alu_out <= (others => '1');
                     else
-                        ds_top <= (others => '0');
+                        alu_out <= (others => '0');
                     end if;
 
                 when OP_LT_U =>
                     if alu_a < alu_b then
-                        ds_top <= (others => '1');
+                        alu_out <= (others => '1');
                     else
-                        ds_top <= (others => '0');
+                        alu_out <= (others => '0');
                     end if;
 
                 when OP_SRL =>
-                    ds_top <= alu_a srl to_integer(unsigned(alu_b(4 downto 0)));
+                    alu_out <= alu_a srl to_integer(unsigned(alu_b(4 downto 0)));
 
                 when OP_SLL =>
-                    ds_top <= alu_a sll to_integer(unsigned(alu_b(4 downto 0)));
+                    alu_out <= alu_a sll to_integer(unsigned(alu_b(4 downto 0)));
 
                 when OP_READ =>
                     dbus_re <= '1';
+
+                when OP_QMUL =>
+                    q_mul_en <= '1';
+
+                when OP_QADD =>
+                    alu_out <= q_add_res;
+
+                when OP_QSUB =>
+                    alu_out <= q_sub_res;
 
                 when others =>
                     report "Break by opcode" severity failure;
@@ -198,7 +232,7 @@ begin
 
     -- Data stack
 
-    process (ds_top, decode.alu_x, ds_in.t, dbus_re, dbus_addr) begin
+    process (alu_out, decode.alu_x, ds_in.t, dbus_re, dbus_addr) begin
         if dbus_re = '1' then
             if decode.alu_byte = '1' then
                 ds_out.t(CELL_BITS-1 downto 8) <= (others => '0');
@@ -219,7 +253,7 @@ begin
                 ds_out.t <= unsigned(dbus_in.dat);
             end if;
         else
-            ds_out.t <= ds_top;
+            ds_out.t <= alu_out;
         end if;
     end process;
 

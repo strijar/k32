@@ -105,7 +105,8 @@ begin
                         when "100" => write(out_line, string'("cp"));
                         when "101" => write(out_line, string'("X "));
                         when "110" => write(out_line, string'("Ds"));
-                        when others => write(out_line, string'("0 "));
+                        when "111" => write(out_line, string'("Q "));
+                        when others => write(out_line, string'("? "));
                     end case;
                     write(out_line, string'(" "));
 
@@ -136,6 +137,9 @@ begin
                         when OP_SRL     => write(out_line, string'("srl "));
                         when OP_SLL     => write(out_line, string'("sll "));
                         when OP_READ    => write(out_line, string'("[Dt]"));
+                        when OP_QMUL    => write(out_line, string'("Q*  "));
+                        when OP_QADD    => write(out_line, string'("Q+  "));
+                        when OP_QSUB    => write(out_line, string'("Q-  "));
                         when others => write(out_line, string'("??? "));
                     end case;
                     write(out_line, string'(" "));

@@ -1,19 +1,22 @@
-GHDL=ghdl-gcc
+GHDL=ghdl-llvm
 GHDLFLAGS= --std=93 --ieee=synopsys --workdir=work
 GHDLRUNFLAGS=--wave=tb_k32.ghw
+
+RAM = test
 
 SRC = \
     ../core/k32_pkg.vhd\
     ../core/k32_fetch.vhd\
     ../core/k32_decode.vhd\
     ../core/k32_dstack.vhd\
+    ../core/k32_q.vhd\
     ../core/k32_ex.vhd\
     ../core/k32.vhd\
     ../soc/uart.vhd\
     txt_util.vhd\
     trace.vhd\
     tb_k32.vhd\
-    ram_life_8x8.vhd
+    ram_$(RAM).vhd
 
 OBJS = \
     work/txt_util.o \
@@ -22,9 +25,10 @@ OBJS = \
     work/k32_fetch.o \
     work/k32_decode.o \
     work/k32_dstack.o \
+    work/k32_q.o \
     work/k32_ex.o \
     work/k32.o \
-    work/ram_life_8x8.o \
+    work/ram_$(RAM).o \
     work/uart.o \
     work/tb_k32.o
 

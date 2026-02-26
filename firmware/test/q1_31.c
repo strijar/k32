@@ -2,11 +2,19 @@
 #include <stdint.h>
 
 int32_t from_float(float x) {
-    return x * 2147483648.0f;
+    int32_t res = x * 2147483648.0f;
+
+    printf("%.5f -> %08X\n", x, res);
+
+    return res;
 }
 
 float to_float(int32_t x) {
-    return x / 2147483648.0f;
+    float res = x / 2147483648.0f;
+
+    printf("%08X -> %.5f\n", x, res);
+
+    return res;
 }
 
 int32_t q_mul(int32_t x, int32_t y) {
@@ -19,6 +27,8 @@ int32_t q_mul(int32_t x, int32_t y) {
 
         res = (int32_t)(prod >> 31);
     }
+
+    printf("%08X * %08X = %08X\n", x, y, res);
 
     return res;
 }
@@ -34,6 +44,8 @@ int32_t q_add(int32_t x, int32_t y) {
         res = -2147483647;
     }
 
+    printf("%08X + %08X = %08X\n", x, y, res);
+
     return res;
 }
 
@@ -48,15 +60,26 @@ int32_t q_sub(int32_t x, int32_t y) {
         res = -2147483647;
     }
 
+    printf("%08X - %08X = %08X\n", x, y, res);
+
     return res;
 }
 
 int main() {
-    int32_t x = from_float(0.5f);
-    int32_t y = from_float(0.25f);
-    int32_t res = q_mul(x, y);
+    int32_t res;
 
-    printf("%08X %08X = %08X (%.7f)\n", x, y, res, to_float(res));
+    /*
+    res = from_float(0.5f);
+    res = q_add(res, q_mul(from_float(0.6f), from_float(0.5f)));
+    res = q_add(res, q_mul(from_float(0.5f), from_float(0.4f)));
+    */
+
+    res = q_sub(from_float(0.7f), from_float(0.2f));
+    res = q_sub(res, from_float(0.6f));
+    res = q_sub(res, from_float(0.5f));
+    res = q_sub(res, from_float(0.5f));
+
+    to_float(res);
 
     return 0;
 }

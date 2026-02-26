@@ -113,6 +113,7 @@ labels 65536 cells 0 fill
 : alu_a:cpu     4 alu_a ;
 : alu_a:X       5 alu_a ;
 : alu_a:dSP     6 alu_a ;
+: alu_a:q       7 alu_a ;
 
 : alu_b:X       0 alu_b ;
 : alu_b:dT      1 alu_b ;
@@ -131,7 +132,10 @@ labels 65536 cells 0 fill
 : alu:>>        9 alu_op ;
 : alu:<<        10 alu_op ;
 : alu:[a]       11 alu_op ;
-: alu:break     15 alu_op ;
+: alu:q*        12 alu_op ;
+: alu:q+        13 alu_op ;
+: alu:q-        14 alu_op ;
+: alu:break     31 alu_op ;
 
 : R->PC         1 18 lshift ;
 : T->N          1 17 lshift or ;

@@ -1,6 +1,10 @@
 : main
-    h# 01010101
-    q# 0.125
-    h# 02020202
+    q# 0.1
+    q# 0.5
+    q# 0.6
+    qmac
+
+    nop
+    nop
     break
 ;fallthru

@@ -14,6 +14,24 @@
 #define DSTACK_SIZE     16
 #define RSTACK_SIZE     16
 
+#define Q_MUL_STAGES    (3 + 1)
+
+#define OP_ADD          0b00000
+#define OP_SUB          0b00001
+#define OP_AND          0b00010
+#define OP_OR           0b00011
+#define OP_XOR          0b00100
+#define OP_NOT          0b00101
+#define OP_EQ           0b00110
+#define OP_LT           0b00111
+#define OP_LT_U         0b01000
+#define OP_SRL          0b01001
+#define OP_SLL          0b01010
+#define OP_READ         0b01011
+#define OP_QMUL         0b01100
+#define OP_QADD         0b01101
+#define OP_QSUB         0b01110
+
 typedef union {
     unsigned int all;
 
@@ -61,6 +79,8 @@ unsigned long   clk = 0;
 
 stack_type      ds;
 stack_type      rs;
+
+int32_t         q_pipe[Q_MUL_STAGES] = { 0 };
 
 int             trace_file = -1;
 
@@ -152,6 +172,50 @@ void write_byte(unsigned int addr, unsigned char data) {
     }
 }
 
+/* Q op's */
+
+int32_t q_mul(int32_t x, int32_t y) {
+    int32_t res;
+
+    if (x == 0x80000000 && y == 0x80000000) {
+        res = 0x7FFFFFFF;
+    } else {
+        int64_t prod = (int64_t) x * (int64_t) y;
+
+        res = (int32_t)(prod >> 31);
+    }
+
+    return res;
+}
+
+int32_t q_add(int32_t x, int32_t y) {
+    int64_t res = (int64_t) x + (int64_t) y;
+
+    if (res > 2147483647) {
+        res = 0x7FFFFFFF;
+    }
+
+    if (res < -2147483648) {
+        res = 0x80000000;
+    }
+
+    return res;
+}
+
+int32_t q_sub(int32_t x, int32_t y) {
+    int64_t res = (int64_t) x - (int64_t) y;
+
+    if (res > 2147483647) {
+        res = 0x7FFFFFFF;
+    }
+
+    if (res < -2147483648) {
+        res = 0x80000000;
+    }
+
+    return res;
+}
+
 /* * */
 
 void init() {
@@ -187,13 +251,14 @@ void alu(unsigned int all) {
     unsigned int        a, b, ds_top;
 
     switch (bits.a_sel) {
-        case 0: a = ds.t;       break;
-        case 1: a = ds.n;       break;
-        case 2: a = rs.t;       break;
-        case 3: a = rs.n;       break;
-        case 4: a = CPU_ID;     break;
-        case 5: a = bits.x;     break;
-        case 6: a = ds.sp;      break;
+        case 0: a = ds.t;                       break;
+        case 1: a = ds.n;                       break;
+        case 2: a = rs.t;                       break;
+        case 3: a = rs.n;                       break;
+        case 4: a = CPU_ID;                     break;
+        case 5: a = bits.x;                     break;
+        case 6: a = ds.sp;                      break;
+        case 7: a = q_pipe[Q_MUL_STAGES - 1];   break;
         default: a = 0;
     }
 
@@ -206,18 +271,21 @@ void alu(unsigned int all) {
     }
 
     switch (bits.op) {
-        case 0: ds_top = a + b;                                                 break;
-        case 1: ds_top = a - b;                                                 break;
-        case 2: ds_top = a & b;                                                 break;
-        case 3: ds_top = a | b;                                                 break;
-        case 4: ds_top = a ^ b;                                                 break;
-        case 5: ds_top = ~a;                                                    break;
-        case 6: ds_top = (a == b) ? -1 : 0;                                     break;
-        case 7: ds_top = ((signed)a < (signed)b) ? -1 : 0;                      break;
-        case 8: ds_top = (a < b) ? -1 : 0;                                      break;
-        case 9: ds_top = a >> b;                                                break;
-        case 10: ds_top = a << b;                                               break;
-        case 11: ds_top = bits.bmem ? read_byte(ds.t) : read_word(ds.t);        break;
+        case OP_ADD:    ds_top = a + b;                                                 break;
+        case OP_SUB:    ds_top = a - b;                                                 break;
+        case OP_AND:    ds_top = a & b;                                                 break;
+        case OP_OR:     ds_top = a | b;                                                 break;
+        case OP_XOR:    ds_top = a ^ b;                                                 break;
+        case OP_NOT:    ds_top = ~a;                                                    break;
+        case OP_EQ:     ds_top = (a == b) ? -1 : 0;                                     break;
+        case OP_LT:     ds_top = ((signed)a < (signed)b) ? -1 : 0;                      break;
+        case OP_LT_U:   ds_top = (a < b) ? -1 : 0;                                      break;
+        case OP_SRL:    ds_top = a >> b;                                                break;
+        case OP_SLL:    ds_top = a << b;                                                break;
+        case OP_READ:   ds_top = bits.bmem ? read_byte(ds.t) : read_word(ds.t);         break;
+        case OP_QMUL:   q_pipe[0] = q_mul(a, b);                                        break;
+        case OP_QADD:   ds_top = q_add(a, b);                                           break;
+        case OP_QSUB:   ds_top = q_sub(a, b);                                           break;
 
         default:
             trace("<-- Bye (%02X) clk:%li\n", bits.op, clk);
@@ -264,6 +332,11 @@ void alu(unsigned int all) {
     }
 
     ds.t = ds_top;
+}
+
+void q_step() {
+    for (int i = Q_MUL_STAGES - 1; i >= 1; i--)
+        q_pipe[i] = q_pipe[i - 1];
 }
 
 void step() {
@@ -329,6 +402,7 @@ int main() {
     load("k32_nuc.bin",  0x0800);
 
     while(1) {
+        q_step();
         step();
         clk++;
     }

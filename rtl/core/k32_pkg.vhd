@@ -53,6 +53,9 @@ package k32_pkg is
     constant OP_SRL     : op_type := b"01001";
     constant OP_SLL     : op_type := b"01010";
     constant OP_READ    : op_type := b"01011";
+    constant OP_QMUL    : op_type := b"01100";
+    constant OP_QADD    : op_type := b"01101";
+    constant OP_QSUB    : op_type := b"01110";
 
     type stack_op_type is record
         push            : std_logic;

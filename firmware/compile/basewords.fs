@@ -3,6 +3,8 @@
 
 meta
 
+: nop           alu_a:dT                                        alu ;
+
 : +             alu_a:dN        alu_b:dT        alu:+   d:pop   alu ;
 : -             alu_a:dN        alu_b:dT        alu:-   d:pop   alu ;
 : xor           alu_a:dN        alu_b:dT        alu:^   d:pop   alu ;
