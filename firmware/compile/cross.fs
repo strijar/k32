@@ -122,7 +122,7 @@ labels 65536 cells 0 fill
 : alu_b:rN      4 alu_b ;
 : alu_b:xT      5 alu_b ;
 : alu_b:xN      6 alu_b ;
-: alu_b:q       7 alu_a ;
+: alu_b:q       7 alu_b ;
 
 : alu:+         0 alu_op ;
 : alu:-         1 alu_op ;
