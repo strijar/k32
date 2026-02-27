@@ -67,7 +67,7 @@ package k32_pkg is
 
         alu             : std_logic;
         alu_a           : std_logic_vector(2 downto 0);
-        alu_b           : std_logic_vector(1 downto 0);
+        alu_b           : std_logic_vector(2 downto 0);
         alu_op          : op_type;
 
         alu_t_n         : std_logic;

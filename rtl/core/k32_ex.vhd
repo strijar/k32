@@ -151,10 +151,14 @@ begin
         q_mul_res                       WHEN others;
 
     WITH decode.alu_b SELECT alu_b <=
-        resize(decode.alu_x, CELL_BITS) WHEN "00",
-        ds_in.t                         WHEN "01",
-        ds_in.n                         WHEN "10",
-        rs_in.t                         WHEN others;
+        resize(decode.alu_x, CELL_BITS) WHEN "000",
+        ds_in.t                         WHEN "001",
+        ds_in.n                         WHEN "010",
+        rs_in.t                         WHEN "011",
+        rs_in.n                         WHEN "100",
+        xs_in.t                         WHEN "101",
+        xs_in.n                         WHEN "110",
+        q_mul_res                       WHEN others;
 
     process (decode, ds_in, rs_in, dbus_in, alu_a, alu_b, q_add_res, q_sub_res) begin
         alu_out <= ds_in.t;

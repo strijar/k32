@@ -80,17 +80,17 @@ begin
     end process;
 
     decode.alu_a <= instr(28 downto 26);
-    decode.alu_b <= instr(25 downto 24);
-    decode.alu_op <= instr(23 downto 19);
+    decode.alu_b <= instr(25 downto 23);
+    decode.alu_op <= instr(22 downto 18);
 
-    decode.alu_r_pc <= instr(18);
-    decode.alu_t_n <= instr(17);
-    decode.alu_t_r <= instr(16);
-    decode.alu_t_x <= instr(15);
-    decode.alu_store <= instr(14);
-    decode.alu_byte <= instr(13);
+    decode.alu_r_pc <= instr(17);
+    decode.alu_t_n <= instr(16);
+    decode.alu_t_r <= instr(15);
+    decode.alu_t_x <= instr(14);
+    decode.alu_store <= instr(13);
+    decode.alu_byte <= instr(12);
 
-    -- (12 downto 11)
+    -- (11 downto 11)
 
     process (instr) begin
         decode.alu_x_op.push <= '0';

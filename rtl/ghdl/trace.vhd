@@ -111,16 +111,21 @@ begin
                     write(out_line, string'(" "));
 
                     case trace_in.decode.alu_b is
-                        when "00" =>
+                        when "000" =>
                             if trace_in.decode.alu_x = "00000" then
                                 write(out_line, string'("    "));
                             else
                                 write(out_line, string'("B:X "));
                             end if;
 
-                        when "01" => write(out_line, string'("B:Dt"));
-                        when "10" => write(out_line, string'("B:Dn"));
-                        when others => write(out_line, string'("B:Rt "));
+                        when "001" => write(out_line, string'("B:Dt"));
+                        when "010" => write(out_line, string'("B:Dn"));
+                        when "011" => write(out_line, string'("B:Rt"));
+                        when "100" => write(out_line, string'("B:Rn"));
+                        when "101" => write(out_line, string'("B:Xt"));
+                        when "110" => write(out_line, string'("B:Xn"));
+                        when "111" => write(out_line, string'("B:Q "));
+                        when others => write(out_line, string'("B:?  "));
                     end case;
                     write(out_line, string'(" "));
 

@@ -103,8 +103,8 @@ labels 65536 cells 0 fill
 ;
 
 : alu_a         26 lshift ;
-: alu_b         24 lshift or ;
-: alu_op        19 lshift or ;
+: alu_b         23 lshift or ;
+: alu_op        18 lshift or ;
 
 : alu_a:dT      0 alu_a ;
 : alu_a:dN      1 alu_a ;
@@ -118,7 +118,11 @@ labels 65536 cells 0 fill
 : alu_b:X       0 alu_b ;
 : alu_b:dT      1 alu_b ;
 : alu_b:dN      2 alu_b ;
-: alu_b:rN      3 alu_b ;
+: alu_b:rT      3 alu_b ;
+: alu_b:rN      4 alu_b ;
+: alu_b:xT      5 alu_b ;
+: alu_b:xN      6 alu_b ;
+: alu_b:q       7 alu_a ;
 
 : alu:+         0 alu_op ;
 : alu:-         1 alu_op ;
@@ -137,12 +141,12 @@ labels 65536 cells 0 fill
 : alu:q-        14 alu_op ;
 : alu:break     31 alu_op ;
 
-: R->PC         1 18 lshift ;
-: T->N          1 17 lshift or ;
-: T->R          1 16 lshift or ;
-: T->X          1 15 lshift or ;
-: N->[T]        1 14 lshift or ;
-: bmem          1 13 lshift or ;
+: R->PC         1 17 lshift ;
+: T->N          1 16 lshift or ;
+: T->R          1 15 lshift or ;
+: T->X          1 14 lshift or ;
+: N->[T]        1 13 lshift or ;
+: bmem          1 12 lshift or ;
 
 : x:push        1 9 lshift or ;
 : x:pop         2 9 lshift or ;
