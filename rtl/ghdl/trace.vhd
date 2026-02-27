@@ -110,18 +110,27 @@ begin
                     end case;
                     write(out_line, string'(" "));
 
-                    write(out_line, string'("B:"));
                     case trace_in.decode.alu_b is
-                        when "00" => write(out_line, string'("X "));
-                        when "01" => write(out_line, string'("Dt"));
-                        when "10" => write(out_line, string'("Dn"));
-                        when others => write(out_line, string'("Rt "));
+                        when "00" =>
+                            if trace_in.decode.alu_x = "00000" then
+                                write(out_line, string'("    "));
+                            else
+                                write(out_line, string'("B:X "));
+                            end if;
+
+                        when "01" => write(out_line, string'("B:Dt"));
+                        when "10" => write(out_line, string'("B:Dn"));
+                        when others => write(out_line, string'("B:Rt "));
                     end case;
                     write(out_line, string'(" "));
 
-                    write(out_line, string'("X:"));
-                    write(out_line, hstr(std_logic_vector(trace_in.decode.alu_x)));
-                    write(out_line, string'(" "));
+                    if trace_in.decode.alu_x = "00000" then
+                        write(out_line, string'("     "));
+                    else
+                        write(out_line, string'("X:"));
+                        write(out_line, hstr(std_logic_vector(trace_in.decode.alu_x)));
+                        write(out_line, string'(" "));
+                    end if;
 
                     write(out_line, string'("Op:"));
                     case trace_in.decode.alu_op is
