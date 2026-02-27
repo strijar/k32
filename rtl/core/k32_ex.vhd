@@ -260,7 +260,6 @@ begin
     process (decode) begin
         ds_out.op.push <= '0';
         ds_out.op.pop <= '0';
-        ds_out.op.load <= '0';
 
         ds_out.we <= '0';
         ds_out.t_we <= '1';
@@ -280,7 +279,6 @@ begin
     process (decode, fetch) begin
         rs_out.op.push <= '0';
         rs_out.op.pop <= '0';
-        rs_out.op.load <= '0';
 
         rs_out.we <= '0';
         rs_out.t_we <= '0';

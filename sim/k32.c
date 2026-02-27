@@ -37,9 +37,9 @@ typedef union {
 
     struct {
         unsigned int x          : 5;
-        unsigned int dstack     : 3;
-        unsigned int rstack     : 3;
-        unsigned int free       : 3;
+        unsigned int dstack     : 2;
+        unsigned int rstack     : 2;
+        unsigned int free       : 5;
         unsigned int bmem       : 1;
         unsigned int nt         : 1;
         unsigned int tr         : 1;

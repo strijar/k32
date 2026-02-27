@@ -143,12 +143,10 @@ labels 65536 cells 0 fill
 : N->[T]        1 15 lshift or ;
 : bmem          1 14 lshift or ;
 
-: r:push        1 8 lshift or ;
-: r:pop         2 8 lshift or ;
-: r:load        3 8 lshift or ;
+: r:push        1 7 lshift or ;
+: r:pop         2 7 lshift or ;
 : d:push        1 5 lshift or ;
 : d:pop         2 5 lshift or ;
-: d:load        3 5 lshift or ;
 
 : ubranch
     ." ubranch 0x" dup hex . decimal cr

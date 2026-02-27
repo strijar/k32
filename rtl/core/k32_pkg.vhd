@@ -60,7 +60,6 @@ package k32_pkg is
     type stack_op_type is record
         push            : std_logic;
         pop             : std_logic;
-        load            : std_logic;
     end record;
 
     type decode_type is record

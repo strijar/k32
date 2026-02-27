@@ -47,45 +47,7 @@ end k32_decode;
 architecture rtl of k32_decode is
 
 begin
-    decode.alu_a <= instr(28 downto 26);
-    decode.alu_b <= instr(25 downto 24);
-    decode.alu_op <= instr(23 downto 19);
-
-    decode.alu_r_pc <= instr(18);
-    decode.alu_t_n <= instr(17);
-    decode.alu_t_r <= instr(16);
-    decode.alu_store <= instr(15);
-    decode.alu_byte <= instr(14);
-
-    decode.alu_x <= unsigned(instr(4 downto 0));
-
-    decode.lit <= instr(CELL_BITS-1);
-
-    process (instr) begin
-        decode.alu_r_op.push <= '0';
-        decode.alu_r_op.pop <= '0';
-        decode.alu_r_op.load <= '0';
-
-        case instr(10 downto 8) is
-            when "001" => decode.alu_r_op.push <= '1';
-            when "010" => decode.alu_r_op.pop <= '1';
-            when "011" => decode.alu_r_op.load <= '1';
-            when others => null;
-        end case;
-    end process;
-
-    process (instr) begin
-        decode.alu_d_op.push <= '0';
-        decode.alu_d_op.pop <= '0';
-        decode.alu_d_op.load <= '0';
-
-        case instr(7 downto 5) is
-            when "001" => decode.alu_d_op.push <= '1';
-            when "010" => decode.alu_d_op.pop <= '1';
-            when "011" => decode.alu_d_op.load <= '1';
-            when others => null;
-        end case;
-    end process;
+    decode.lit <= instr(31);
 
     process (irq, instr) begin
         decode.jump <= '0';
@@ -99,7 +61,7 @@ begin
         else
             decode.target <= instr;
 
-            case instr(CELL_BITS-1 downto CELL_BITS-3) is
+            case instr(31 downto 29) is
                 when "000" =>
                     decode.jump <= '1';
 
@@ -116,5 +78,41 @@ begin
             end case;
         end if;
     end process;
+
+    decode.alu_a <= instr(28 downto 26);
+    decode.alu_b <= instr(25 downto 24);
+    decode.alu_op <= instr(23 downto 19);
+
+    decode.alu_r_pc <= instr(18);
+    decode.alu_t_n <= instr(17);
+    decode.alu_t_r <= instr(16);
+    decode.alu_store <= instr(15);
+    decode.alu_byte <= instr(14);
+
+    -- (13 downto 9)
+
+    process (instr) begin
+        decode.alu_r_op.push <= '0';
+        decode.alu_r_op.pop <= '0';
+
+        case instr(8 downto 7) is
+            when "01" => decode.alu_r_op.push <= '1';
+            when "10" => decode.alu_r_op.pop <= '1';
+            when others => null;
+        end case;
+    end process;
+
+    process (instr) begin
+        decode.alu_d_op.push <= '0';
+        decode.alu_d_op.pop <= '0';
+
+        case instr(6 downto 5) is
+            when "01" => decode.alu_d_op.push <= '1';
+            when "10" => decode.alu_d_op.pop <= '1';
+            when others => null;
+        end case;
+    end process;
+
+    decode.alu_x <= unsigned(instr(4 downto 0));
 
 end;
