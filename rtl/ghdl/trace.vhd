@@ -66,7 +66,7 @@ begin
             file store_file     : text open write_mode is log_file;
             variable out_line   : line;
         begin
-            print(store_file, "PC       Instr                                                                                          Dt       Dn       SP   Rt       Rn       SP");
+            print(store_file, "PC       Instr                                                                                                 Dt       Dn       SP   Rt       Rn       SP   Xt       Xn       SP");
 
             wait until rst = '0';
             wait until clk = '1';
@@ -80,19 +80,19 @@ begin
                 if trace_in.decode.call = '1' then
                     write(out_line, string'(" Call     : "));
                     write(out_line, hstr(std_logic_vector(trace_in.decode.target(CELL_BITS-4 downto 0))));
-                    write(out_line, string'("                                                                "));
+                    write(out_line, string'("                                                                       "));
                 elsif trace_in.decode.jump = '1' then 
                     write(out_line, string'(" Jump     : "));
                     write(out_line, hstr(std_logic_vector(trace_in.decode.target(CELL_BITS-4 downto 0))));
-                    write(out_line, string'("                                                                "));
+                    write(out_line, string'("                                                                       "));
                 elsif trace_in.decode.cond_jump = '1' then
                     write(out_line, string'(" CondJump : "));
                     write(out_line, hstr(std_logic_vector(trace_in.decode.target(CELL_BITS-4 downto 0))));
-                    write(out_line, string'("                                                                "));
+                    write(out_line, string'("                                                                       "));
                 elsif trace_in.decode.lit = '1' then
                     write(out_line, string'(" Lit      : "));
                     write(out_line, hstr(std_logic_vector(trace_in.decode.target(CELL_BITS-2 downto 0))));
-                    write(out_line, string'("                                                                "));
+                    write(out_line, string'("                                                                       "));
                 elsif trace_in.decode.alu = '1' then
                     write(out_line, string'(" ALU      : "));
 
@@ -102,8 +102,8 @@ begin
                         when "001" => write(out_line, string'("Dn"));
                         when "010" => write(out_line, string'("Rt"));
                         when "011" => write(out_line, string'("Rn"));
-                        when "100" => write(out_line, string'("cp"));
-                        when "101" => write(out_line, string'("X "));
+                        when "100" => write(out_line, string'("Xt"));
+                        when "101" => write(out_line, string'("Xn"));
                         when "110" => write(out_line, string'("Ds"));
                         when "111" => write(out_line, string'("Q "));
                         when others => write(out_line, string'("? "));
@@ -199,6 +199,14 @@ begin
                     else
                         write(out_line, string'("       "));
                     end if;
+
+                    if trace_in.decode.alu_x_op.push = '1' then
+                        write(out_line, string'("X:push "));
+                    elsif trace_in.decode.alu_x_op.pop = '1' then
+                        write(out_line, string'("X:pop  "));
+                    else
+                        write(out_line, string'("       "));
+                    end if;
                 end if;
 
                 write(out_line, string'(" | "));
@@ -216,6 +224,14 @@ begin
                 write(out_line, hstr(std_logic_vector(trace_in.rs.n)));
                 write(out_line, string'(" "));
                 write(out_line, hstr(std_logic_vector(trace_in.rs.sp)));
+
+                write(out_line, string'(" | "));
+
+                write(out_line, hstr(std_logic_vector(trace_in.xs.t)));
+                write(out_line, string'(" "));
+                write(out_line, hstr(std_logic_vector(trace_in.xs.n)));
+                write(out_line, string'(" "));
+                write(out_line, hstr(std_logic_vector(trace_in.xs.sp)));
 
                 if trace_in.decode.alu_r_pc = '1' or trace_in.decode.call = '1' then
                     write(out_line, LF);
