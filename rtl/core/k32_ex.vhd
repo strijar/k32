@@ -38,9 +38,6 @@ use work.k32_pkg.all;
 use work.txt_util.all;
 
 entity k32_ex is
-    generic (
-        cpu_id          : integer := 0
-    );
     port (
         clk             : in std_logic;
         rst             : in std_logic;
@@ -56,6 +53,9 @@ entity k32_ex is
 
         rs_out          : out dstack_in_type;
         rs_in           : in dstack_out_type;
+
+        xs_out          : out dstack_in_type;
+        xs_in           : in dstack_out_type;
 
         dbus_out        : out dbus_out_type;
         dbus_in         : in dbus_in_type;
@@ -145,8 +145,8 @@ begin
         ds_in.n                         WHEN "001",
         rs_in.t                         WHEN "010",
         rs_in.n                         WHEN "011",
-        to_unsigned(cpu_id, CELL_BITS)  WHEN "100",
-        resize(decode.alu_x, CELL_BITS) WHEN "101",
+        xs_in.t                         WHEN "100",
+        xs_in.n                         WHEN "101",
         resize(ds_in.sp, CELL_BITS)     WHEN "110",
         q_mul_res                       WHEN others;
 
@@ -296,6 +296,22 @@ begin
             else
                 rs_out.t <= fetch.pc + 4;
             end if;
+        end if;
+    end process;
+
+    -- eXtra stack
+
+    process (decode, fetch) begin
+        xs_out.op.push <= '0';
+        xs_out.op.pop <= '0';
+
+        xs_out.we <= '0';
+        xs_out.t_we <= '0';
+        xs_out.t <= ds_in.t;
+
+        if decode.alu = '1' then
+            xs_out.t_we <= decode.alu_t_x;
+            xs_out.op <= decode.alu_x_op;
         end if;
     end process;
 

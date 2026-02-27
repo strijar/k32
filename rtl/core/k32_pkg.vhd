@@ -72,12 +72,14 @@ package k32_pkg is
 
         alu_t_n         : std_logic;
         alu_t_r         : std_logic;
+        alu_t_x         : std_logic;
         alu_r_pc        : std_logic;
         alu_store       : std_logic;
         alu_byte        : std_logic;
 
         alu_d_op        : stack_op_type;
         alu_r_op        : stack_op_type;
+        alu_x_op        : stack_op_type;
         alu_x           : unsigned(4 downto 0);
 
         jump            : std_logic;
@@ -99,6 +101,7 @@ package k32_pkg is
     type ex_type is record
         d_t             : unsigned(CELL_BITS-1 downto 0);
         r_t             : unsigned(CELL_BITS-1 downto 0);
+        x_t             : unsigned(CELL_BITS-1 downto 0);
     end record;
 
     -- Data stack
@@ -152,6 +155,7 @@ package k32_pkg is
         decode  : decode_type;
         ds      : dstack_out_type;
         rs      : dstack_out_type;
+        xs      : dstack_out_type;
     end record;
 
     -- Vectors

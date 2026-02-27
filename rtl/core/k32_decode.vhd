@@ -86,10 +86,22 @@ begin
     decode.alu_r_pc <= instr(18);
     decode.alu_t_n <= instr(17);
     decode.alu_t_r <= instr(16);
-    decode.alu_store <= instr(15);
-    decode.alu_byte <= instr(14);
+    decode.alu_t_x <= instr(15);
+    decode.alu_store <= instr(14);
+    decode.alu_byte <= instr(13);
 
-    -- (13 downto 9)
+    -- (12 downto 11)
+
+    process (instr) begin
+        decode.alu_x_op.push <= '0';
+        decode.alu_x_op.pop <= '0';
+
+        case instr(10 downto 9) is
+            when "01" => decode.alu_x_op.push <= '1';
+            when "10" => decode.alu_x_op.pop <= '1';
+            when others => null;
+        end case;
+    end process;
 
     process (instr) begin
         decode.alu_r_op.push <= '0';

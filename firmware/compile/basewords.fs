@@ -37,7 +37,13 @@ meta
 : r@            alu_a:rT        T->N                    d:push  alu ;
 : rdrop         alu_a:dN                                r:pop   alu ;
 
+: >x            alu_a:dN        T->X            x:push  d:pop   alu ;
+: x>            alu_a:xT        T->N            x:pop   d:push  alu ;
+: x@            alu_a:xT        T->N                    d:push  alu ;
+: xdrop         alu_a:dN                                x:pop   alu ;
+
 : @             alu_a:dT                        alu:[a]         alu ;
+
 : !             alu_a:dT        N->[T]                  d:pop   alu
                 alu_a:dN                                d:pop   alu ;
 

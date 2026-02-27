@@ -37,9 +37,6 @@ library work;
 use work.k32_pkg.all;
 
 entity k32 is
-    generic(
-        cpu_id          : integer := 0
-    );
     port (
         clk             : in std_logic;
         rst             : in std_logic;
@@ -73,6 +70,9 @@ architecture rtl of k32 is
     signal ex_rs        : dstack_in_type;
     signal rs_ex        : dstack_out_type;
 
+    signal ex_xs        : dstack_in_type;
+    signal xs_ex        : dstack_out_type;
+
     signal dbus_in      : dbus_in_type;
     signal dbus_out     : dbus_out_type;
 
@@ -97,9 +97,6 @@ begin
         );
 
     ex_i: entity work.k32_ex
-        generic map(
-            cpu_id      => cpu_id
-        )
         port map(
             clk         => clk,
             rst         => rst,
@@ -111,6 +108,8 @@ begin
             ds_out      => ex_ds,
             rs_in       => rs_ex,
             rs_out      => ex_rs,
+            xs_in       => xs_ex,
+            xs_out      => ex_xs,
             dbus_in     => dbus_in,
             dbus_out    => dbus_out,
             exception   => exception
@@ -134,8 +133,18 @@ begin
             dout        => rs_ex
         );
 
+    xstack_i: entity work.k32_dstack
+        port map(
+            clk         => clk,
+            rst         => rst,
+            en          => en,
+            din         => ex_xs,
+            dout        => xs_ex
+        );
+
     ex.d_t <= ds_ex.t;
     ex.r_t <= rs_ex.t;
+    ex.x_t <= xs_ex.t;
 
     data_out.addr <= dbus_out.addr;
     data_out.dat <= dbus_out.dat;
@@ -169,5 +178,6 @@ begin
     trace_out.decode <= decode;
     trace_out.ds <= ds_ex;
     trace_out.rs <= rs_ex;
+    trace_out.xs <= xs_ex;
 
 end;

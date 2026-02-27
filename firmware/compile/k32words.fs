@@ -20,7 +20,6 @@ meta
 : 8*            alu_a:dT        alu_b:X         alu:<<  3 or    alu ;
 : 16*           alu_a:dT        alu_b:X         alu:<<  4 or    alu ;
 
-: cpu           alu_a:cpu       alu_b:X         alu:+   d:push  alu ;
 : break         alu_a:dT                        alu:break       alu ;
 
 : tuck-         alu_a:dN        alu_b:dT        alu:-  T->N     alu ;

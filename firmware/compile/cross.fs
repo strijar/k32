@@ -110,8 +110,8 @@ labels 65536 cells 0 fill
 : alu_a:dN      1 alu_a ;
 : alu_a:rT      2 alu_a ;
 : alu_a:rN      3 alu_a ;
-: alu_a:cpu     4 alu_a ;
-: alu_a:X       5 alu_a ;
+: alu_a:xT      4 alu_a ;
+: alu_a:xN      5 alu_a ;
 : alu_a:dSP     6 alu_a ;
 : alu_a:q       7 alu_a ;
 
@@ -140,9 +140,12 @@ labels 65536 cells 0 fill
 : R->PC         1 18 lshift ;
 : T->N          1 17 lshift or ;
 : T->R          1 16 lshift or ;
-: N->[T]        1 15 lshift or ;
-: bmem          1 14 lshift or ;
+: T->X          1 15 lshift or ;
+: N->[T]        1 14 lshift or ;
+: bmem          1 13 lshift or ;
 
+: x:push        1 9 lshift or ;
+: x:pop         2 9 lshift or ;
 : r:push        1 7 lshift or ;
 : r:pop         2 7 lshift or ;
 : d:push        1 5 lshift or ;
