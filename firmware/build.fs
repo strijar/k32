@@ -17,7 +17,7 @@ dict[
 
     $20 org
     module[ MAIN
-        include main_test.fs
+        include main_convolve.fs
     ]module
 ]dict
 

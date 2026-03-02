@@ -65,21 +65,19 @@ int32_t q_sub(int32_t x, int32_t y) {
     return res;
 }
 
-int main() {
-    int32_t res;
+void test_convolve() {
+    int32_t res = 0;
 
-    /*
-    res = from_float(0.5f);
-    res = q_add(res, q_mul(from_float(0.6f), from_float(0.5f)));
-    res = q_add(res, q_mul(from_float(0.5f), from_float(0.4f)));
-    */
-
-    res = q_sub(from_float(0.7f), from_float(0.2f));
-    res = q_sub(res, from_float(0.6f));
-    res = q_sub(res, from_float(0.5f));
-    res = q_sub(res, from_float(0.5f));
+    res = q_add(res, q_mul(from_float(0.1f), from_float(0.5f)));
+    res = q_add(res, q_mul(from_float(0.2f), from_float(0.6f)));
+    res = q_add(res, q_mul(from_float(0.3f), from_float(0.7f)));
+    res = q_add(res, q_mul(from_float(0.4f), from_float(0.8f)));
 
     to_float(res);
+}
+
+int main() {
+    test_convolve();
 
     return 0;
 }

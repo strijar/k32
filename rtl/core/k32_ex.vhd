@@ -70,6 +70,7 @@ architecture rtl of k32_ex is
     signal alu_a, alu_b : unsigned(CELL_BITS-1 downto 0);
 
     signal dbus_re      : std_logic;
+    signal dbus_re_x    : std_logic;
     signal dbus_we      : std_logic;
     signal dbus_addr    : unsigned(CELL_BITS-1 downto 0);
 
@@ -84,7 +85,7 @@ begin
 
     -- BUS --
 
-    dbus_out.re <= dbus_re;
+    dbus_out.re <= dbus_re or dbus_re_x;
     dbus_out.addr <= std_logic_vector(dbus_addr);
 
     dbus_addr <= alu_out;
@@ -163,6 +164,7 @@ begin
     process (decode, ds_in, rs_in, dbus_in, alu_a, alu_b, q_add_res, q_sub_res) begin
         alu_out <= ds_in.t;
         dbus_re <= '0';
+        dbus_re_x <= '0';
         q_mul_en <= '0';
 
         if decode.lit = '1' then
@@ -227,6 +229,9 @@ begin
 
                 when OP_QSUB =>
                     alu_out <= q_sub_res;
+
+                when OP_READ_X =>
+                    dbus_re_x <= '1';
 
                 when others =>
                     report "Break by opcode" severity failure;
@@ -305,7 +310,7 @@ begin
 
     -- eXtra stack
 
-    process (decode, fetch) begin
+    process (decode, fetch, dbus_re_x, dbus_in.dat, ds_in.t) begin
         xs_out.op.push <= '0';
         xs_out.op.pop <= '0';
 
@@ -314,7 +319,13 @@ begin
         xs_out.t <= ds_in.t;
 
         if decode.alu = '1' then
-            xs_out.t_we <= decode.alu_t_x;
+            if dbus_re_x = '1' then
+                xs_out.t <= unsigned(dbus_in.dat);
+                xs_out.t_we <= '1';
+            else
+                xs_out.t_we <= decode.alu_t_x;
+            end if;
+
             xs_out.op <= decode.alu_x_op;
         end if;
     end process;

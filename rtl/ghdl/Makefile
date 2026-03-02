@@ -2,7 +2,7 @@ GHDL=ghdl
 GHDLFLAGS= --std=93 --ieee=synopsys --workdir=work
 GHDLRUNFLAGS=--wave=tb_k32.ghw
 
-RAM = test
+RAM = convolve
 
 SRC = \
     ../core/k32_pkg.vhd\

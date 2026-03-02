@@ -66,7 +66,7 @@ begin
             file store_file     : text open write_mode is log_file;
             variable out_line   : line;
         begin
-            print(store_file, "PC       Instr                                                                                                 Dt       Dn       SP   Rt       Rn       SP   Xt       Xn       SP");
+            print(store_file, "PC       Instr                                                                                                        Dt       Dn       SP   Rt       Rn       SP   Xt       Xn       SP");
 
             wait until rst = '0';
             wait until clk = '1';
@@ -80,19 +80,19 @@ begin
                 if trace_in.decode.call = '1' then
                     write(out_line, string'(" Call     : "));
                     write(out_line, hstr(std_logic_vector(trace_in.decode.target(CELL_BITS-4 downto 0))));
-                    write(out_line, string'("                                                                       "));
+                    write(out_line, string'("                                                                              "));
                 elsif trace_in.decode.jump = '1' then 
                     write(out_line, string'(" Jump     : "));
                     write(out_line, hstr(std_logic_vector(trace_in.decode.target(CELL_BITS-4 downto 0))));
-                    write(out_line, string'("                                                                       "));
+                    write(out_line, string'("                                                                              "));
                 elsif trace_in.decode.cond_jump = '1' then
                     write(out_line, string'(" CondJump : "));
                     write(out_line, hstr(std_logic_vector(trace_in.decode.target(CELL_BITS-4 downto 0))));
-                    write(out_line, string'("                                                                       "));
+                    write(out_line, string'("                                                                              "));
                 elsif trace_in.decode.lit = '1' then
                     write(out_line, string'(" Lit      : "));
                     write(out_line, hstr(std_logic_vector(trace_in.decode.target(CELL_BITS-2 downto 0))));
-                    write(out_line, string'("                                                                       "));
+                    write(out_line, string'("                                                                              "));
                 elsif trace_in.decode.alu = '1' then
                     write(out_line, string'(" ALU      : "));
 
@@ -150,10 +150,11 @@ begin
                         when OP_LT_U    => write(out_line, string'("u<  "));
                         when OP_SRL     => write(out_line, string'("srl "));
                         when OP_SLL     => write(out_line, string'("sll "));
-                        when OP_READ    => write(out_line, string'("[Dt]"));
+                        when OP_READ    => write(out_line, string'("[]  "));
                         when OP_QMUL    => write(out_line, string'("Q*  "));
                         when OP_QADD    => write(out_line, string'("Q+  "));
                         when OP_QSUB    => write(out_line, string'("Q-  "));
+                        when OP_READ_X  => write(out_line, string'("[]>X"));
                         when others => write(out_line, string'("??? "));
                     end case;
                     write(out_line, string'(" "));
@@ -171,7 +172,13 @@ begin
                     end if;
 
                     if trace_in.decode.alu_t_r = '1' then
-                        write(out_line, string'("Dt->Rn "));
+                        write(out_line, string'("Dt->Rt "));
+                    else
+                        write(out_line, string'("       "));
+                    end if;
+
+                    if trace_in.decode.alu_t_x = '1' then
+                        write(out_line, string'("Dt->Xt "));
                     else
                         write(out_line, string'("       "));
                     end if;

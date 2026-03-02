@@ -135,10 +135,11 @@ labels 65536 cells 0 fill
 : alu:u<        8 alu_op ;
 : alu:>>        9 alu_op ;
 : alu:<<        10 alu_op ;
-: alu:[a]       11 alu_op ;
+: alu:[T]       11 alu_op ;
 : alu:q*        12 alu_op ;
 : alu:q+        13 alu_op ;
 : alu:q-        14 alu_op ;
+: alu:[T]->X    15 alu_op ;
 : alu:break     31 alu_op ;
 
 : R->PC         1 17 lshift ;
@@ -574,7 +575,7 @@ decimal
 ;
 
 : 0do    s" >r d# 0 >r"     evaluate there s" (do)" setlabel ;
-: do     s" 2>r"         evaluate there s" (do)" setlabel ;
+: do     s" 2>r"            evaluate there s" (do)" setlabel ;
 
 : loop
     ." loop 0x" dup hex . decimal cr

@@ -43,7 +43,7 @@ $10004          constant #uart_busy
 : sliteral
     ]asm
         alu_a:rT                                 d:push     alu
-        alu_a:dT            alu:[a]  bmem                   alu
+        alu_a:dT            alu:[T]  bmem                   alu
         alu_a:rT  alu_b:dT  alu:+    T->N        d:push     alu
     asm[
 

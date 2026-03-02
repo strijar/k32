@@ -1,7 +1,7 @@
 meta
 
-: dup@          alu_a:dT        T->N            alu:[a] d:push  alu ;
-: dupc@         alu_a:dT        T->N     bmem   alu:[a] d:push  alu ;
+: dup@          alu_a:dT        T->N            alu:[T] d:push  alu ;
+: dupc@         alu_a:dT        T->N     bmem   alu:[T] d:push  alu ;
 
 : 1-            alu_a:dT        alu_b:X         alu:-   1 or    alu ;
 : 2-            alu_a:dT        alu_b:X         alu:-   2 or    alu ;
@@ -24,3 +24,7 @@ meta
 
 : tuck-         alu_a:dN        alu_b:dT        alu:-  T->N     alu ;
 
+: swap4-        alu_a:dN        alu_b:x         alu:-  T->N 4 or alu ;
+: swap4+        alu_a:dN        alu_b:x         alu:+  T->N 4 or alu ;
+
+: @>x           alu_a:dT                        alu:[T]->X x:push alu ;

@@ -14,3 +14,10 @@ meta
                 alu_a:q                                         alu
                 alu_a:q                                         alu
                 alu_a:q         alu_b:dN        alu:q+  d:pop   alu ;
+
+: x>qmac>x
+                alu_a:xN        alu_b:xT        alu:q*  d:push x:pop    alu
+                alu_a:q                                        x:pop    alu
+                alu_a:q                                                 alu
+                alu_a:q         alu_b:xT        alu:q+                  alu
+                alu_a:dN        T->X                    d:pop           alu ;

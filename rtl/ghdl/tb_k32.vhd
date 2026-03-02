@@ -110,9 +110,6 @@ begin
     en <= '1';
 
     cpu: entity work.k32
-        generic map(
-            cpu_id      => 1
-        )
         port map(
             clk         => clk,
             rst         => reset,
